@@ -24,10 +24,10 @@ type LocaleContextValue = {
 const LocaleContext = createContext<LocaleContextValue | null>(null);
 
 function readStoredLocale(): Locale {
-  if (typeof window === "undefined") return defaultLocale;
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  return isLocale(stored) ? stored : defaultLocale;
+  // Italian temporarily disabled — always serve English.
+  return defaultLocale;
 }
+
 
 let cachedLocale: Locale = defaultLocale;
 

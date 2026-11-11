@@ -4,8 +4,8 @@ import { ArrowUp } from "lucide-react";
 import { profile } from "@/data/profile";
 import { enabledSocialLinks } from "@/data/social";
 import { Container } from "@/components/ui/Container";
-import { LanguageSelect } from "@/components/navigation/LanguageSelect";
 import { useLocale } from "@/i18n/LocaleProvider";
+
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -65,14 +65,9 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-5">
-              <p className="mb-2 font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
-                {t.language.label}
-              </p>
-              <LanguageSelect />
-            </div>
           </div>
         </div>
+
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
           <p className="font-mono text-xs text-fg-subtle">

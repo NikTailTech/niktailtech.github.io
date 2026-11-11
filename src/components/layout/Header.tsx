@@ -4,8 +4,8 @@ import { profile } from "@/data/profile";
 import { enabledSocialLinks } from "@/data/social";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/navigation/ThemeToggle";
-import { LanguageSwitch } from "@/components/navigation/LanguageSwitch";
 import { MobileNav } from "@/components/navigation/MobileNav";
+
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 import { useLocale } from "@/i18n/LocaleProvider";
 
@@ -65,8 +65,8 @@ export function Header() {
               )}
             </a>
           ))}
-          <LanguageSwitch />
           <ThemeToggle />
+
           <MobileNav items={navigation} />
         </div>
       </Container>
