@@ -40,7 +40,7 @@ export const projects: Project[] = [
       "CSS",
     ],
 
-    image: "/images/projects/arischiogatti-cover.jpg",
+    image: "/images/cats/cat.svg",
 
     status: "completed",
     highlights: [
