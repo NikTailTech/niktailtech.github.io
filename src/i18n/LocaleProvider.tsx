@@ -9,7 +9,8 @@ import {
   useSyncExternalStore,
   type ReactNode,
 } from "react";
-import { defaultLocale, dictionaries, isLocale } from "@/i18n/dictionaries";
+import { defaultLocale, dictionaries } from "@/i18n/dictionaries";
+
 import type { Dictionary, Locale } from "@/i18n/types";
 
 const STORAGE_KEY = "nicholas-locale";
