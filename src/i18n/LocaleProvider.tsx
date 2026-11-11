@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { defaultLocale, dictionaries, isLocale } from "@/i18n/dictionaries";
@@ -29,21 +29,54 @@ function readStoredLocale(): Locale {
   return isLocale(stored) ? stored : defaultLocale;
 }
 
+let cachedLocale: Locale = defaultLocale;
+
+function getClientSnapshot(): Locale {
+  const next = readStoredLocale();
+  if (cachedLocale === next) return cachedLocale;
+  cachedLocale = next;
+  return cachedLocale;
+}
+
+function getServerSnapshot(): Locale {
+  return defaultLocale;
+}
+
+type LocaleListener = () => void;
+const listeners = new Set<LocaleListener>();
+
+function subscribe(listener: LocaleListener) {
+  listeners.add(listener);
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === STORAGE_KEY) listener();
+  };
+  window.addEventListener("storage", onStorage);
+  return () => {
+    listeners.delete(listener);
+    window.removeEventListener("storage", onStorage);
+  };
+}
+
+function emit() {
+  listeners.forEach((l) => l());
+}
+
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale);
-  const [ready, setReady] = useState(false);
+  const locale = useSyncExternalStore(
+    subscribe,
+    getClientSnapshot,
+    getServerSnapshot,
+  );
 
   useEffect(() => {
-    const next = readStoredLocale();
-    setLocaleState(next);
-    document.documentElement.lang = next;
-    setReady(true);
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
     window.localStorage.setItem(STORAGE_KEY, next);
     document.documentElement.lang = next;
-    setLocaleState(next);
+    cachedLocale = next;
+    emit();
   }, []);
 
   const value = useMemo<LocaleContextValue>(
@@ -51,9 +84,9 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
       locale,
       t: dictionaries[locale],
       setLocale,
-      ready,
+      ready: true,
     }),
-    [locale, setLocale, ready],
+    [locale, setLocale],
   );
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
