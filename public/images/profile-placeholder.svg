@@ -14,6 +14,6 @@
   <!-- silhouette -->
   <circle cx="400" cy="360" r="118" fill="#2A3140"/>
   <path d="M170 820c20-150 110-250 230-250s210 100 230 250v80H170z" fill="#2A3140"/>
-  <text x="40" y="900" fill="#8B93A7" font-family="ui-monospace,monospace" font-size="18" letter-spacing="0.12em">PHOTO SLOT</text>
-  <text x="40" y="932" fill="#5C6578" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16">Replace with your portrait</text>
+  <text x="40" y="900" fill="#8B93A7" font-family="ui-monospace,monospace" font-size="18" letter-spacing="0.12em">MODEL TBD</text>
+  <text x="40" y="932" fill="#5C6578" font-family="ui-sans-serif,system-ui,sans-serif" font-size="16">Still casting myself for this role</text>
 </svg>

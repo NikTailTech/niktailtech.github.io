@@ -32,7 +32,7 @@ export const en: Dictionary = {
     eyebrow: "Portfolio",
     exploreProjects: "Explore Projects",
     getInTouch: "Get in Touch",
-    photoAlt: "Portrait placeholder — replace with your photo",
+    photoAlt: "Still casting myself for this role",
   },
   tldr: {
     eyebrow: "TL;DR",
