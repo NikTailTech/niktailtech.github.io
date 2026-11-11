@@ -58,9 +58,11 @@ Prefer WebP/AVIF for photos; SVG placeholders ship by default. Keep meaningful `
 
 ## GitHub Pages base path
 
-For a **project** site (`username.github.io/repo-name`):
+This portfolio is a **user** site (`https://niktailtech.github.io`). Leave `NEXT_PUBLIC_BASE_PATH` / Actions `BASE_PATH` empty.
+
+In **Settings → Pages**, set Source to **GitHub Actions**. A branch source makes GitHub serve the README via Jekyll.
+
+For a **project** site (`username.github.io/repo-name`) only:
 
 1. Locally: copy `.env.example` → `.env.local` and set `NEXT_PUBLIC_BASE_PATH=/repo-name`
 2. GitHub: repository **Settings → Secrets and variables → Actions → Variables** → create `BASE_PATH` = `/repo-name`
-
-For a **user** site (`username.github.io`) or custom domain, leave base path empty.

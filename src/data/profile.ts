@@ -107,7 +107,6 @@ export const profile: Profile = {
   cvAvailable: false,
 
   seo: {
-    // TODO: Set to your live site URL (custom domain or GitHub Pages URL)
     siteUrl: "https://niktailtech.github.io",
     title: "Nicholas — Full Stack Developer",
     description:

@@ -27,8 +27,8 @@ Production-ready personal portfolio for **Nicholas** (`NikTailTech`), Full Stack
 ## Setup
 
 ```bash
-git clone https://github.com/NikTailTech/personal-website.git
-cd personal-website
+git clone https://github.com/NikTailTech/niktailtech.github.io.git
+cd niktailtech.github.io
 cp .env.example .env.local
 npm install
 npm run dev
@@ -63,14 +63,14 @@ npx serve out
 
 ## GitHub Pages setup
 
-1. Push this repository to GitHub under `NikTailTech` (or your account).
-2. **Settings → Pages → Build and deployment → Source**: GitHub Actions.
-3. Ensure the default branch is `main` (or `master` — the workflow listens to both).
-4. If this is a **project site** (`https://NikTailTech.github.io/<repo>/`):
-   - Create repository variable `BASE_PATH` = `/<repo>` (Settings → Secrets and variables → Actions → Variables).
-   - Mirror it locally in `.env.local` as `NEXT_PUBLIC_BASE_PATH=/<repo>`.
-5. If this is a **user/org site** or a **custom domain**, leave `BASE_PATH` empty and set `seo.siteUrl` in `src/data/profile.ts`.
-6. Push to `main`/`master` or run the **Deploy to GitHub Pages** workflow manually.
+This repo is the **user site** for `NikTailTech` → live at [https://niktailtech.github.io](https://niktailtech.github.io).
+
+1. **Settings → Pages → Build and deployment → Source**: **GitHub Actions** (not “Deploy from a branch”).  
+   If Source is a branch, GitHub serves Jekyll and shows this README instead of the Next.js site.
+2. Ensure the default branch is `main` (or `master` — the workflow listens to both).
+3. Leave `BASE_PATH` / `NEXT_PUBLIC_BASE_PATH` **empty** (user sites are served from `/`).
+4. Confirm `seo.siteUrl` in `src/data/profile.ts` is `https://niktailtech.github.io`.
+5. Push to `main`/`master` or run the **Deploy to GitHub Pages** workflow manually.
 
 ### Workflow
 
@@ -123,7 +123,8 @@ public/                # images, icons, documents
 
 | Issue | Fix |
 | --- | --- |
-| Broken assets on Pages | Set `BASE_PATH` / `NEXT_PUBLIC_BASE_PATH` to `/repo-name` |
+| Site shows README / Jekyll | Pages Source must be **GitHub Actions**, not a branch |
+| Broken assets on Pages | For project sites only: set `BASE_PATH` / `NEXT_PUBLIC_BASE_PATH` to `/repo-name`. User sites leave it empty. |
 | 404 on refresh of nested routes | This site is a single-page export; use the custom 404 or trailing-slash home |
 | Theme flash | `ThemeScript` runs before paint; hard-refresh if testing mid-change |
 | Email / CV buttons incomplete | Configure `profile.ts` flags after adding real values |
