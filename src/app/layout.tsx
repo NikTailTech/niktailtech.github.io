@@ -3,9 +3,12 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { profile } from "@/data/profile";
+import { LocaleProvider } from "@/i18n/LocaleProvider";
 import "./globals.css";
+
 
 
 const display = Syne({
@@ -104,17 +107,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeScript />
       </head>
       <body className="min-h-full flex flex-col antialiased">
-        <a href="#main" className="skip-link">
-          Skip to content
-        </a>
-        <Header />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <LocaleProvider>
+          <SkipLink />
+          <Header />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </LocaleProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </body>
+
     </html>
   );
 }

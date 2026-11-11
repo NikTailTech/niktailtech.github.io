@@ -1,32 +1,36 @@
-import { Download, Mail } from "lucide-react";
-import { contactConfig } from "@/data/contact";
+"use client";
+
+import { Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 import { enabledSocialLinks, socialLinks } from "@/data/social";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function Contact() {
+  const { t } = useLocale();
   const linkedIn = socialLinks.find((l) => l.id === "linkedin");
   const github = enabledSocialLinks.find((l) => l.id === "github");
   const mailto = profile.emailConfigured
-    ? `mailto:${profile.email}?subject=${encodeURIComponent(contactConfig.mailtoSubject)}`
+    ? `mailto:${profile.email}?subject=${encodeURIComponent(t.contact.mailtoSubject)}&body=${encodeURIComponent(t.contact.mailtoBody)}`
     : undefined;
 
   return (
     <Section id="contact" labelledBy="contact-heading">
-      <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+      <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+
         <SectionHeading
           id="contact-heading"
-          eyebrow="Contact"
-          title={contactConfig.heading}
-          description={contactConfig.body}
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.heading}
+          description={t.contact.body}
         />
 
         <div className="border border-border bg-bg-elevated p-6 sm:p-8">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
-            Reach out
+            {t.contact.reachOut}
           </p>
 
           <ul className="mt-6 space-y-4">
@@ -39,17 +43,7 @@ export function Contact() {
                   <Mail className="h-4 w-4" aria-hidden />
                   <span>{profile.email}</span>
                 </a>
-              ) : (
-                <div className="text-sm text-fg-muted">
-                  <p className="inline-flex items-center gap-3 text-fg">
-                    <Mail className="h-4 w-4" aria-hidden />
-                    Email not configured yet
-                  </p>
-                  <p className="mt-2 font-mono text-xs text-warning">
-                    TODO: Set email in src/data/profile.ts and emailConfigured: true
-                  </p>
-                </div>
-              )}
+              ) : null}
             </li>
             {github ? (
               <li>
@@ -76,38 +70,18 @@ export function Contact() {
                   LinkedIn
                 </a>
               </li>
-            ) : (
-              <li className="text-sm text-fg-muted">
-                <p className="inline-flex items-center gap-3">
-                  <LinkedInIcon className="h-4 w-4" />
-                  LinkedIn pending
-                </p>
-                <p className="mt-2 font-mono text-xs text-warning">
-                  TODO: Enable LinkedIn in src/data/social.ts
-                </p>
-              </li>
-            )}
+            ) : null}
           </ul>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {mailto ? (
               <Button href={mailto} variant="primary">
-                Email Nicholas
+                {t.contact.emailNicholas}
               </Button>
             ) : (
               <Button href={`https://github.com/${profile.githubUsername}`} variant="primary">
-                Message via GitHub
+                GitHub
               </Button>
-            )}
-            {profile.cvAvailable ? (
-              <Button href={profile.cvPath} variant="secondary">
-                <Download className="h-4 w-4" aria-hidden />
-                Download CV
-              </Button>
-            ) : (
-              <p className="w-full pt-2 font-mono text-xs text-fg-subtle">
-                TODO: Add public/documents/nicholas-cv.pdf and set cvAvailable: true
-              </p>
             )}
           </div>
         </div>

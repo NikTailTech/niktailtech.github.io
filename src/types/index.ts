@@ -142,4 +142,7 @@ export interface ContactConfig {
   body: string;
   /** mailto subject when email is configured */
   mailtoSubject: string;
+  /** mailto body template when email is configured */
+  mailtoBody: string;
 }
+

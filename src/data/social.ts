@@ -6,10 +6,11 @@ export const navigation: NavItem[] = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "GitHub", href: "#repositories" },
-  { label: "Beyond", href: "#beyond" },
+  // Hidden while repositoriesSectionVisible is false in repositories.ts
+  // { label: "GitHub", href: "#repositories" },
   { label: "Contact", href: "#contact" },
 ];
+
 
 /**
  * Social & contact links. Disable entries until real URLs are available.
@@ -24,11 +25,10 @@ export const socialLinks: SocialLink[] = [
   {
     id: "linkedin",
     label: "LinkedIn",
-    // TODO: Replace with your LinkedIn profile URL and set enabled: true
-    href: "https://www.linkedin.com/in/YOUR_LINKEDIN_SLUG",
-    enabled: false,
-    todo: "Add LinkedIn profile URL",
+    href: "https://www.linkedin.com/in/nicholas-codazzi/",
+    enabled: true,
   },
+
 ];
 
 export const enabledSocialLinks = socialLinks.filter((link) => link.enabled);

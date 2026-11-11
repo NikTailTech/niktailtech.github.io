@@ -2,12 +2,16 @@
 
 import { Menu, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-import { navigation } from "@/data/social";
+import { useLocale } from "@/i18n/LocaleProvider";
 import { cn } from "@/lib/utils";
 
-export function MobileNav() {
+
+type NavItem = { label: string; href: string };
+
+export function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const panelId = useId();
+  const { t } = useLocale();
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -31,7 +35,7 @@ export function MobileNav() {
         className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-fg"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
         onClick={() => setOpen((v) => !v)}
       >
         {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -44,8 +48,8 @@ export function MobileNav() {
           open ? "visible opacity-100" : "invisible opacity-0 pointer-events-none",
         )}
       >
-        <nav aria-label="Mobile" className="flex flex-col gap-1 px-5 py-4">
-          {navigation.map((item) => (
+        <nav aria-label={t.nav.mobile} className="flex flex-col gap-1 px-5 py-4">
+          {items.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -56,6 +60,7 @@ export function MobileNav() {
             </a>
           ))}
         </nav>
+
       </div>
     </div>
   );

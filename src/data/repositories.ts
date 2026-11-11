@@ -6,7 +6,11 @@ const gh = (repo: string) => `https://github.com/${profile.githubUsername}/${rep
 /**
  * Public GitHub repositories — configured statically (no runtime API).
  * Update names, descriptions, and URLs to match real public repos.
+ *
+ * Flip to true when ready to show the section again (also re-enable nav in social.ts).
  */
+export const repositoriesSectionVisible = false;
+
 export const repositories: Repository[] = [
   {
     id: "placeholder-repo-1",

@@ -5,18 +5,19 @@ import { ExternalLink } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
+import { useLocale } from "@/i18n/LocaleProvider";
 import type { Project } from "@/types";
-
-const statusLabel: Record<Project["status"], string> = {
-  concept: "Concept",
-  "in-progress": "In progress",
-  completed: "Completed",
-  archived: "Archived",
-  placeholder: "Placeholder",
-};
 
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const reduce = useReducedMotion();
+  const { t } = useLocale();
+  const localized = t.projectsContent[project.id];
+
+  const name = localized?.name ?? project.name;
+  const shortDescription = localized?.shortDescription ?? project.shortDescription;
+  const detailedDescription =
+    localized?.detailedDescription ?? project.detailedDescription;
+  const highlights = localized?.highlights ?? project.highlights;
 
   return (
     <motion.article
@@ -28,30 +29,43 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
       className="group flex flex-col overflow-hidden border border-border bg-bg-elevated"
     >
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-bg-muted">
+        {project.liveUrl ? (
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute inset-0 z-[1] block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            aria-label={`${t.projects.visitSite}: ${name}`}
+          >
+            <span className="sr-only">
+              {t.projects.visitSite} {name}
+            </span>
+          </a>
+        ) : null}
         <Image
           src={project.image}
-          alt={`${project.name} preview`}
+          alt={`${name} preview`}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-        <div className="absolute left-3 top-3 flex gap-2">
+        <div className="pointer-events-none absolute left-3 top-3 z-[2] flex gap-2">
           <Badge tone={project.isPlaceholder ? "warn" : "accent"}>
-            {statusLabel[project.status]}
+            {t.projects.status[project.status]}
           </Badge>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-fg">
-          {project.name}
+          {name}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-fg-muted">{project.shortDescription}</p>
-        <p className="mt-3 text-sm leading-relaxed text-fg-subtle">{project.detailedDescription}</p>
+        <p className="mt-2 text-sm leading-relaxed text-fg-muted">{shortDescription}</p>
+        <p className="mt-3 text-sm leading-relaxed text-fg-subtle">{detailedDescription}</p>
 
-        {project.highlights.length > 0 ? (
+        {highlights.length > 0 ? (
           <ul className="mt-4 space-y-1.5 text-sm text-fg-muted">
-            {project.highlights.map((h) => (
+            {highlights.map((h) => (
               <li key={h} className="flex gap-2">
                 <span className="text-accent" aria-hidden>
                   —
@@ -69,9 +83,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         ) : null}
 
         <ul className="mt-5 flex flex-wrap gap-2">
-          {project.technologies.map((t) => (
-            <li key={t}>
-              <Badge>{t}</Badge>
+          {project.technologies.map((tech) => (
+            <li key={tech}>
+              <Badge>{tech}</Badge>
             </li>
           ))}
         </ul>
@@ -85,11 +99,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               className="inline-flex items-center gap-2 text-sm text-fg hover:text-accent"
             >
               <GitHubIcon className="h-4 w-4" />
-              Repository
+              {t.projects.repository}
             </a>
-          ) : (
-            <span className="text-sm text-fg-subtle">Repository pending</span>
-          )}
+          ) : null}
           {project.liveUrl ? (
             <a
               href={project.liveUrl}
@@ -98,7 +110,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               className="inline-flex items-center gap-2 text-sm text-fg hover:text-accent"
             >
               <ExternalLink className="h-4 w-4" aria-hidden />
-              Live demo
+              {t.projects.visitSite}
             </a>
           ) : null}
         </div>

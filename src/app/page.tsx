@@ -1,11 +1,11 @@
 import { About } from "@/components/sections/About";
-import { Beyond } from "@/components/sections/Beyond";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Repositories } from "@/components/sections/Repositories";
 import { Skills } from "@/components/sections/Skills";
+import { repositoriesSectionVisible } from "@/data/repositories";
 
 export default function HomePage() {
   return (
@@ -15,9 +15,10 @@ export default function HomePage() {
       <Experience />
       <Skills />
       <Projects />
-      <Repositories />
-      <Beyond />
+      {repositoriesSectionVisible ? <Repositories /> : null}
       <Contact />
     </main>
   );
 }
+
+

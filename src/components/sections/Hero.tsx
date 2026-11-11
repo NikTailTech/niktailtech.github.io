@@ -7,9 +7,11 @@ import { enabledSocialLinks, socialLinks } from "@/data/social";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
+import { useLocale } from "@/i18n/LocaleProvider";
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const { t } = useLocale();
   const linkedIn = socialLinks.find((l) => l.id === "linkedin");
   const github = enabledSocialLinks.find((l) => l.id === "github");
 
@@ -33,7 +35,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45 }}
           >
-            Portfolio
+            {t.hero.eyebrow}
           </motion.p>
 
           <motion.h1
@@ -52,7 +54,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.12 }}
           >
-            {profile.title}
+            {t.profile.title}
           </motion.p>
 
           <motion.p
@@ -61,7 +63,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.18 }}
           >
-            {profile.shortBio}
+            {t.profile.shortBio}
           </motion.p>
 
           <motion.p
@@ -70,7 +72,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.24 }}
           >
-            {profile.personalStatement}
+            {t.profile.personalStatement}
           </motion.p>
 
           <motion.div
@@ -80,11 +82,11 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Button href="#projects" variant="primary">
-              Explore Projects
+              {t.hero.exploreProjects}
               <ArrowDownRight className="h-4 w-4" aria-hidden />
             </Button>
             <Button href="#contact" variant="secondary">
-              Get in Touch
+              {t.hero.getInTouch}
             </Button>
             {github ? (
               <Button href={github.href} variant="ghost" aria-label="GitHub">
@@ -103,7 +105,7 @@ export function Hero() {
 
         <motion.aside
           className="relative hidden lg:block"
-          aria-label="Focus areas"
+          aria-label={t.hero.focusAreasLabel}
           initial={reduce ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -115,10 +117,10 @@ export function Hero() {
             />
             <div className="relative m-6 flex flex-col border border-border/80 p-6">
               <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-subtle">
-                Focus
+                {t.hero.focus}
               </p>
               <ul className="mt-4 space-y-3.5">
-                {profile.focusAreas.map((area) => (
+                {t.profile.focusAreas.map((area) => (
                   <li key={area.title} className="flex gap-3">
                     <span
                       className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent"
@@ -135,7 +137,7 @@ export function Hero() {
               </ul>
               <div className="mt-6 border-t border-border pt-5">
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-subtle">
-                  Stack signal
+                  {t.hero.stackSignal}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-fg">
                   {profile.stackSignal.join(" • ")}

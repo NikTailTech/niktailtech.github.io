@@ -7,34 +7,52 @@ import type { SkillCategory } from "@/types";
  */
 export const skillCategories: SkillCategory[] = [
   {
-    id: "software",
-    title: "Software Engineering",
+    id: "web",
+    title: "Web Development",
     description:
-      "Application development across the stack — interfaces, APIs, data, and delivery.",
+      "Interfaces, frameworks, styling, and web application delivery.",
+
     skills: [
-      { name: "JavaScript" },
       { name: "TypeScript" },
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "Node.js" },
-      { name: "Three.js" },
-      { name: "shadcn/ui" },
+      { name: "JavaScript" },
       { name: "HTML" },
       { name: "CSS" },
+      { name: "SCSS" },
+      { name: "React.js" },
+      { name: "Next.js" },
       { name: "Tailwind CSS" },
       { name: "Bootstrap" },
+      { name: "shadcn/ui" },
+      { name: "jQuery" },
+      { name: "Three.js" },
       { name: "PHP" },
-      { name: "Java" },
-      { name: "SQL" },
-      { name: "REST APIs" },
-      { name: "MongoDB" },
-      { name: "PostgreSQL" },
-      { name: "Prisma" },
-      { name: "Supabase" },
-      { name: "Git" },
-      { name: "GitHub" },
+      { name: "REST apis" },
+      { name: "SOAP apis" },
+      { name: "i18n" },
     ],
   },
+  {
+    id: "database",
+
+    title: "Database Management",
+    description:
+      "Relational and document databases, ORM/BaaS tooling, and day-to-day database administration.",
+    skills: [
+      { name: "Database design" },
+      { name: "SQL" },
+      { name: "T-SQL" },
+      { name: "PostgreSQL" },
+      { name: "MySQL" },
+      { name: "SQL Server" },
+      { name: "Azure SQL" },
+      { name: "MongoDB" },
+      { name: "Prisma" },
+      { name: "Supabase" },
+      { name: "SQL Server Management Studio" },
+      { name: "MySQL Workbench" },
+    ],
+  },
+
   {
     id: "infrastructure",
     title: "Infrastructure & DevOps",
@@ -45,10 +63,14 @@ export const skillCategories: SkillCategory[] = [
       { name: "Docker" },
       { name: "Kubernetes" },
       { name: "k3s" },
+      { name: "k9s" },
+
       { name: "Proxmox" },
       { name: "Networking" },
       { name: "Tailscale" },
       { name: "CI/CD" },
+      { name: "Git" },
+      { name: "GitHub" },
       { name: "Virtualization" },
       { name: "Self-hosted infrastructure" },
     ],
@@ -59,13 +81,17 @@ export const skillCategories: SkillCategory[] = [
     description:
       "Active interest and practical exploration of crypto ecosystems, Web3 tooling, and digital assets.",
     skills: [
-      { name: "Cryptocurrency ecosystem", level: "working" },
-      { name: "Blockchain technologies", level: "exploring" },
-      { name: "Web3", level: "exploring" },
-      { name: "NFT creation", level: "working" },
-      { name: "Digital assets", level: "working" },
-      { name: "Cryptocurrency portfolio tracking", level: "working" },
+      { name: "Cryptocurrency ecosystem" },
+      { name: "Blockchain technologies" },
+      { name: "DeFi" },
+      { name: "Solidity" },
+
+      { name: "NFT Creation" },
+      { name: "Cryptocurrency portfolio tracking" },
     ],
+
+
+
   },
   {
     id: "3d",
@@ -78,8 +104,8 @@ export const skillCategories: SkillCategory[] = [
       { name: "Organic modeling" },
       { name: "Digital sculpting" },
       { name: "Hard-surface modeling" },
-      { name: "CAD-oriented design" },
       { name: "3D printing" },
+
       { name: "Prototyping" },
     ],
   },
@@ -89,16 +115,13 @@ export const skillCategories: SkillCategory[] = [
     description:
       "Visual communication and motion — composition, image work, and edited video.",
     skills: [
+      { name: "Figma" },
       { name: "Adobe Photoshop" },
       { name: "Adobe Illustrator" },
       { name: "Adobe Premiere Pro" },
       { name: "Adobe After Effects" },
-      { name: "Graphic design" },
-      { name: "Image editing" },
-      { name: "Vector graphics" },
-      { name: "Video editing" },
-      { name: "Motion graphics" },
     ],
+
   },
 ];
 
