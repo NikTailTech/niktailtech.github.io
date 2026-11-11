@@ -6,12 +6,12 @@ import { enabledSocialLinks } from "@/data/social";
 import { Container } from "@/components/ui/Container";
 import { useLocale } from "@/i18n/LocaleProvider";
 
-
 export function Footer() {
   const year = new Date().getFullYear();
   const { t } = useLocale();
 
   const navigation = [
+    { label: t.nav.tldr, href: "#tldr" },
     { label: t.nav.about, href: "#about" },
     { label: t.nav.experience, href: "#experience" },
     { label: t.nav.skills, href: "#skills" },
@@ -19,27 +19,25 @@ export function Footer() {
     { label: t.nav.contact, href: "#contact" },
   ];
 
+  const followLinks = enabledSocialLinks.filter(
+    (l) => l.id === "github" || l.id === "linkedin",
+  );
+
   return (
     <footer className="section-rule border-t border-border bg-bg-elevated py-12">
       <Container className="flex flex-col gap-10">
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr_auto]">
-          <div>
-            <p className="font-[family-name:var(--font-display)] text-xl font-semibold text-fg">
-              {profile.name}
-            </p>
-            <p className="mt-2 max-w-sm text-sm leading-relaxed text-fg-muted">
-              {t.profile.title}. {t.footer.tagline}
-            </p>
-          </div>
-
+        <div className="grid gap-10 sm:grid-cols-[2fr_1fr] sm:gap-12 lg:gap-16">
           <nav aria-label={t.nav.footer}>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
               {t.footer.navigate}
             </p>
-            <ul className="grid grid-cols-2 gap-2 text-sm">
+            <ul className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href} className="text-fg-muted hover:text-fg">
+                  <a
+                    href={item.href}
+                    className="text-fg-muted transition-colors hover:text-fg"
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -48,17 +46,17 @@ export function Footer() {
           </nav>
 
           <div>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
-              {t.footer.connect}
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
+              {t.footer.followMe}
             </p>
-            <ul className="flex flex-col gap-2 text-sm">
-              {enabledSocialLinks.map((link) => (
+            <ul className="flex flex-col gap-3 text-sm">
+              {followLinks.map((link) => (
                 <li key={link.id}>
                   <a
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-fg-muted hover:text-fg"
+                    className="text-fg-muted transition-colors hover:text-fg"
                   >
                     {link.label}
                   </a>
@@ -67,7 +65,6 @@ export function Footer() {
             </ul>
           </div>
         </div>
-
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
           <p className="font-mono text-xs text-fg-subtle">

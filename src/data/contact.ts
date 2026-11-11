@@ -1,8 +1,8 @@
 import type { ContactConfig } from "@/types";
 
 export const contactConfig: ContactConfig = {
-  heading: "Let’s talk about what you’re building",
-  body: "If you’re hiring for a full stack role, need help shipping a product, or just want to talk through a technical idea — write me. Happy to hear what you’re working on.",
+  heading: "Let’s Talk",
+  body: "Open to chats about software, infrastructure, side projects, or anything interesting you're building. Drop me a line.",
 
   mailtoSubject: "Professional inquiry — portfolio",
   mailtoBody: `Hi Nicholas,

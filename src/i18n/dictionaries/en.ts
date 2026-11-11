@@ -5,8 +5,9 @@ export const en: Dictionary = {
     skipToContent: "Skip to content",
   },
   nav: {
+    tldr: "TL;DR",
     about: "About",
-    experience: "Experience",
+    experience: "Experiences",
     skills: "Skills",
     projects: "Projects",
     contact: "Contact",
@@ -31,31 +32,41 @@ export const en: Dictionary = {
     eyebrow: "Portfolio",
     exploreProjects: "Explore Projects",
     getInTouch: "Get in Touch",
-    focus: "Focus",
-    stackSignal: "Stack signal",
-    focusAreasLabel: "Focus areas",
+    photoAlt: "Portrait placeholder — replace with your photo",
+  },
+  tldr: {
+    eyebrow: "TL;DR",
+    lead: "Too long? Here’s the cheat sheet.",
+    stackSignal: "Stack",
+    stackGroups: {
+      frontend: "Frontend",
+      backend: "Backend",
+      data: "Data",
+      infra: "Infra & systems",
+    },
   },
   about: {
     eyebrow: "About",
     title: "Building Beyond Code",
-
+    intro: "A short look at how I work, what I dig into, and why I build the way I do.",
     basedIn: "Based in",
   },
   experience: {
     eyebrow: "Experience",
-    title: "Professional timeline",
+    title: "Professional Timeline",
     description: "Roles, responsibilities, and stack from my professional path.",
   },
   skills: {
-    eyebrow: "Capabilities",
-    title: "Technical skills",
-    description: "Organized by domain — breadth is intentional; depth depends on the role.",
+    eyebrow: "Skills",
+    title: "Technical Skills",
+    description:
+      "Languages, frameworks, and tools I use across frontend, backend, data, infrastructure, design, 3D printing, and Web3.",
   },
   projects: {
     eyebrow: "Work",
     title: "Featured projects",
     description:
-      "Selected work across product engineering, infrastructure, Web3, and creative fabrication.",
+      "A few selected pieces for now. I'm sorting through more projects and will publish others soon.",
     comingSoonEyebrow: "In progress",
     comingSoonTitle: "Coming soon",
     comingSoonBody:
@@ -73,8 +84,8 @@ export const en: Dictionary = {
   },
   contact: {
     eyebrow: "Contact",
-    heading: "Let’s talk about what you’re building",
-    body: "If you’re hiring for a full stack role, need help shipping a product, or just want to talk through a technical idea — write me. Happy to hear what you’re working on.",
+    heading: "Let’s Talk",
+    body: "Open to chats about software, infrastructure, side projects, or anything interesting you're building. Drop me a line.",
     reachOut: "Reach out",
     emailNicholas: "Contact me",
 
@@ -93,26 +104,26 @@ Best regards,
   },
   footer: {
     tagline: "Building software with systems awareness and creative range.",
-    navigate: "Navigate",
+    navigate: "Navigation",
     connect: "Connect",
+    followMe: "Follow Me",
     rights: "All rights reserved.",
     backToTop: "Back to top",
   },
   profile: {
     title: "Full Stack Developer",
     shortBio:
-      "Driven by a passion for technology, engineering, and problem-solving; my interests extend beyond traditional software development, spanning frontend and backend engineering, cloud-native infrastructure, Web3, and digital creation. From building scalable applications and containerized environments with Docker and Kubernetes to exploring 3D modeling, printing, and visual design, I enjoy leveraging code and technology to transform ideas into reality.",
+      "I'm a Full Stack Developer. I like building software end to end — the interface, the services behind it, and the infrastructure that keeps it running.",
     personalStatement:
-      "I design and ship software end-to-end: from interface and API to deployment and the systems that keep it running.",
+      "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
     availability:
       "Open to professional opportunities and technical collaborations — full stack roles, product work, and projects where I can own features from design to production.",
-
     about: [
-      "I work as a Full Stack Developer. I build complete applications: clear interfaces, services that stay maintainable over time, and deployments meant to hold up outside the local environment.",
-      "I look at software as a system. I care about architecture, data models, and everything that happens in production — Linux, containers, networking, CI/CD, self-hosted infrastructure. Understanding how things actually run helps me make better design choices.",
-      "Alongside code, I follow other areas too: crypto and blockchain, 3D modeling, digital fabrication, and media design. I also created an NFT collection, mainly to try out the end-to-end flow. These keep me sharp on precision and creativity, and they remind me that an idea matters when it becomes something concrete.",
-
-      "I like learning on my own and taking on hard problems. What I care about most, though, stays the same: designing and building software — even when design, maker culture, or other technologies sit around it.",
+      "I'm a Full Stack Developer. I like building software end to end — the interface people use, the services behind it, and the infrastructure that keeps it running.",
+      "I don't stop at writing features. Architecture, data models, how it scales, whether it holds up — that stuff matters to me. I spend time with Linux, Docker, Kubernetes, networking, and CI/CD because apps have to work outside a laptop, not just in local.",
+      "Outside day-to-day product work I dig into crypto and blockchain. I made an NFT collection and wrote the smart contract for it, mostly to go through the whole flow myself. I also do 3D modeling, digital fabrication, printing, and visual design when I want something more hands-on.",
+      "I learn by trying things and taking on problems I haven't seen before. Shipping an app, setting up infra, or making a design real — that's when it clicks for me.",
+      "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
     ],
 
     focusAreas: [
@@ -169,7 +180,7 @@ Best regards,
       ],
     },
     "sl-technology": {
-      title: "Programmer",
+      title: "Full Stack Web Developer",
       location: "Crema, Lombardy, Italy",
       summary:
         "Developed and maintained web applications and websites for different businesses, primarily focused on business management, process optimization and tailored software solutions.",
@@ -182,7 +193,7 @@ Best regards,
       ],
     },
     zucchetti: {
-      title: "Programmer",
+      title: "Full Stack Developer",
       location: "Lodi, Lombardy, Italy",
       summary:
         "Worked within a Research & Development (R&D) environment, contributing to software development activities and database design while completing an initial technical training program.",

@@ -15,11 +15,20 @@ export function About() {
           id="about-heading"
           eyebrow={t.about.eyebrow}
           title={t.about.title}
-          description={t.profile.availability}
+          description={t.about.intro}
         />
         <div className="prose-portfolio text-base leading-relaxed text-fg-muted sm:text-lg">
-          {t.profile.about.map((paragraph) => (
-            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+          {t.profile.about.map((paragraph, index) => (
+            <p
+              key={paragraph.slice(0, 32)}
+              className={
+                index === t.profile.about.length - 1
+                  ? "border-l-2 border-accent pl-4 text-fg"
+                  : undefined
+              }
+            >
+              {paragraph}
+            </p>
           ))}
           {profile.location ? (
             <p className="mt-6 font-mono text-sm text-fg-subtle">

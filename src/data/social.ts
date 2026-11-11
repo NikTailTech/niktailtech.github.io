@@ -2,8 +2,9 @@ import type { NavItem, SocialLink } from "@/types";
 import { profile } from "./profile";
 
 export const navigation: NavItem[] = [
+  { label: "TL;DR", href: "#tldr" },
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
+  { label: "Experiences", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   // Hidden while repositoriesSectionVisible is false in repositories.ts

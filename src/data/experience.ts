@@ -41,7 +41,7 @@ export const experiences: ExperienceItem[] = [
   {
     id: "sl-technology",
     company: "SL TECHNOLOGY SRL",
-    title: "Programmer",
+    title: "Full Stack Web Developer",
     period: "Feb 2023 – May 2025",
     location: "Crema, Lombardy, Italy",
     summary:
@@ -73,7 +73,7 @@ export const experiences: ExperienceItem[] = [
   {
     id: "zucchetti",
     company: "Zucchetti",
-    title: "Programmer",
+    title: "Full Stack Developer",
     period: "Oct 2022 – Feb 2023",
     location: "Lodi, Lombardy, Italy",
     summary:

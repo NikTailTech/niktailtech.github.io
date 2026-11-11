@@ -5,8 +5,9 @@ export const it: Dictionary = {
     skipToContent: "Vai al contenuto",
   },
   nav: {
+    tldr: "TL;DR",
     about: "Chi sono",
-    experience: "Esperienza",
+    experience: "Esperienze",
     skills: "Competenze",
     projects: "Progetti",
     contact: "Contatti",
@@ -31,13 +32,23 @@ export const it: Dictionary = {
     eyebrow: "Portfolio",
     exploreProjects: "Guarda i progetti",
     getInTouch: "Contattami",
-    focus: "Ambiti",
+    photoAlt: "Placeholder ritratto — sostituisci con la tua foto",
+  },
+  tldr: {
+    eyebrow: "TL;DR",
+    lead: "Troppo lungo? Ecco il riassunto furbo.",
     stackSignal: "Stack",
-    focusAreasLabel: "Aree di interesse",
+    stackGroups: {
+      frontend: "Frontend",
+      backend: "Backend",
+      data: "Data",
+      infra: "Infra e sistemi",
+    },
   },
   about: {
     eyebrow: "Chi sono",
     title: "Costruire oltre il codice",
+    intro: "Un pezzo su come lavoro, cosa mi interessa e perché costruisco così.",
     basedIn: "Con sede a",
   },
   experience: {
@@ -46,15 +57,16 @@ export const it: Dictionary = {
     description: "I ruoli che ho ricoperto, cosa ho fatto e con quali tecnologie.",
   },
   skills: {
-    eyebrow: "Competenze",
-    title: "Competenze tecniche",
-    description: "Raggruppate per ambito. Una panoramica ampia; la profondità cambia a seconda del contesto.",
+    eyebrow: "Skills",
+    title: "Competenze Tecniche",
+    description:
+      "Linguaggi, framework e tool che uso tra frontend, backend, data, infrastruttura, design, stampa 3D e Web3.",
   },
   projects: {
     eyebrow: "Lavori",
     title: "Progetti in evidenza",
     description:
-      "Alcuni lavori selezionati: sviluppo prodotto, infrastruttura, Web3 e progetti creativi.",
+      "Per ora qualche pezzo selezionato. Sto organizzando gli altri progetti e a breve ne pubblicherò di nuovi.",
     comingSoonEyebrow: "In preparazione",
     comingSoonTitle: "Prossimamente",
     comingSoonBody:
@@ -72,8 +84,8 @@ export const it: Dictionary = {
   },
   contact: {
     eyebrow: "Contatti",
-    heading: "Parliamo di quello che stai costruendo",
-    body: "Cerchi un Full Stack Developer, ti serve una mano a portare online un prodotto, o vuoi solo confrontarti su un’idea tecnica? Scrivimi: mi fa piacere sapere a cosa stai lavorando.",
+    heading: "Let’s Talk",
+    body: "Aperto a chiacchiere su software, infrastruttura, side project o qualsiasi cosa interessante a cui stai lavorando. Scrivimi.",
     reachOut: "Come contattarmi",
     emailNicholas: "Contattami",
 
@@ -94,22 +106,24 @@ Un saluto,
     tagline: "Software pensato come sistema, con spazio anche per la parte creativa.",
     navigate: "Navigazione",
     connect: "Social",
+    followMe: "Follow Me",
     rights: "Tutti i diritti riservati.",
     backToTop: "Torna su",
   },
   profile: {
     title: "Full Stack Developer",
     shortBio:
-      "Mi appassionano la tecnologia, l’ingegneria e la ricerca di soluzioni innovative. Oltre allo sviluppo software tradizionale, mi interesso di frontend e backend, infrastrutture cloud-native, Web3 e creazione digitale. Dallo sviluppo di applicazioni scalabili alla gestione di ambienti basati su Docker e Kubernetes, fino alla modellazione 3D, alla stampa e al design. Utilizzo il codice e la tecnologia per trasformare le idee in progetti concreti.",
+      "Sono un Full Stack Developer. Mi piace costruire software da un capo all’altro: interfaccia, servizi dietro, e l’infrastruttura che lo tiene in piedi.",
     personalStatement:
-      "Progetto e porto in produzione software end-to-end: dall’interfaccia e dalle API fino al deploy e ai sistemi che lo fanno funzionare.",
+      "Quello che mi tiene in moto è semplice: capire come funziona una cosa, trovare un modo più pulito per costruirla, e far diventare reale un’idea ancora confusa.",
     availability:
       "Sono aperto a opportunità professionali e collaborazioni tecniche: ruoli Full Stack, lavoro su prodotto e progetti in cui possa seguire le feature dal design fino alla produzione.",
     about: [
-      "Lavoro come Full Stack Developer. Costruisco applicazioni complete: interfacce chiare, servizi mantenibili nel tempo e deploy pensati per reggere anche fuori dall’ambiente locale.",
-      "Guardo al software come a un sistema. Mi interessano l’architettura, i modelli dati e tutto ciò che succede in produzione: Linux, container, networking, CI/CD, infrastrutture self-hosted. Capire come girano davvero le cose mi aiuta a scegliere meglio in fase di progetto.",
-      "Accanto al codice seguo anche crypto e blockchain, modellazione 3D, fabbricazione digitale e media design. Ho creato una collection NFT soprattutto per sperimentare il flusso end-to-end. Sono attività che mi allenano su precisione e creatività, e mi ricordano che un’idea conta quando diventa qualcosa di concreto.",
-      "Imparo volentieri da solo e mi piace affrontare problemi difficili. Quello che mi interessa di più, però, resta lo stesso: progettare e sviluppare software, anche quando intorno ci sono design, maker culture o altre tecnologie.",
+      "Sono un Full Stack Developer. Mi piace costruire software da un capo all’altro: l’interfaccia che usi, i servizi dietro, e l’infrastruttura che lo tiene in piedi.",
+      "Non mi fermo a scrivere feature. Architettura, modelli dati, se scala, se regge — per me conta. Perdo tempo con Linux, Docker, Kubernetes, networking e CI/CD perché un’app deve funzionare fuori dal laptop, non solo in locale.",
+      "Fuori dal lavoro di prodotto mi metto su crypto e blockchain. Ho fatto una collection NFT e scritto lo smart contract, soprattutto per passare da solo tutto il flusso. Faccio anche modellazione 3D, fabbricazione digitale, stampa e visual design quando voglio qualcosa di più concreto tra le mani.",
+      "Imparo provando e buttandomi su problemi che non ho ancora visto. Rilasciare un’app, configurare infra, o far diventare reale un design: è lì che mi torna tutto.",
+      "Quello che mi tiene in moto è semplice: capire come funziona una cosa, trovare un modo più pulito per costruirla, e far diventare reale un’idea ancora confusa.",
     ],
     focusAreas: [
       {
@@ -162,7 +176,7 @@ Un saluto,
       ],
     },
     "sl-technology": {
-      title: "Programmatore",
+      title: "Full Stack Web Developer",
       location: "Crema, Lombardia, Italia",
       summary:
         "Ho sviluppato e mantenuto applicazioni web e siti per diverse aziende, soprattutto in ambito gestionale, ottimizzazione dei processi e soluzioni software su misura.",
@@ -175,7 +189,7 @@ Un saluto,
       ],
     },
     zucchetti: {
-      title: "Programmatore",
+      title: "Full Stack Developer",
       location: "Lodi, Lombardia, Italia",
       summary:
         "Ho lavorato in un team di Ricerca e Sviluppo (R&D), contribuendo allo sviluppo software e alla progettazione di database durante un percorso iniziale di formazione tecnica.",

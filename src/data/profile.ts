@@ -12,17 +12,17 @@ export const profile: Profile = {
   githubUsername: "NikTailTech",
 
   shortBio:
-    "Driven by a passion for technology, engineering, and problem-solving; my interests extend beyond traditional software development, spanning frontend and backend engineering, cloud-native infrastructure, Web3, and digital creation. From building scalable applications and containerized environments with Docker and Kubernetes to exploring 3D modeling, printing, and visual design, I enjoy leveraging code and technology to transform ideas into reality.",
+    "I'm a Full Stack Developer. I like building software end to end — the interface, the services behind it, and the infrastructure that keeps it running.",
 
   personalStatement:
-    "I design and ship software end-to-end: from interface and API to deployment and the systems that keep it running.",
+    "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
 
   about: [
-    "I work as a Full Stack Developer. I build complete applications: clear interfaces, services that stay maintainable over time, and deployments meant to hold up outside the local environment.",
-    "I look at software as a system. I care about architecture, data models, and everything that happens in production — Linux, containers, networking, CI/CD, self-hosted infrastructure. Understanding how things actually run helps me make better design choices.",
-    "Alongside code, I follow other areas too: crypto and blockchain, 3D modeling, digital fabrication, and media design. I also created an NFT collection, mainly to try out the end-to-end flow. These keep me sharp on precision and creativity, and they remind me that an idea matters when it becomes something concrete.",
-
-    "I like learning on my own and taking on hard problems. What I care about most, though, stays the same: designing and building software — even when design, maker culture, or other technologies sit around it.",
+    "I'm a Full Stack Developer. I like building software end to end — the interface people use, the services behind it, and the infrastructure that keeps it running.",
+    "I don't stop at writing features. Architecture, data models, how it scales, whether it holds up — that stuff matters to me. I spend time with Linux, Docker, Kubernetes, networking, and CI/CD because apps have to work outside a laptop, not just in local.",
+    "Outside day-to-day product work I dig into crypto and blockchain. I made an NFT collection and wrote the smart contract for it, mostly to go through the whole flow myself. I also do 3D modeling, digital fabrication, printing, and visual design when I want something more hands-on.",
+    "I learn by trying things and taking on problems I haven't seen before. Shipping an app, setting up infra, or making a design real — that's when it clicks for me.",
+    "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
   ],
 
 
@@ -65,34 +65,35 @@ export const profile: Profile = {
     },
   ],
 
-  // Ordered by job-market demand (full-stack / software eng. postings, 2025–2026)
-  stackSignal: [
-    "React.js",
-    "TypeScript",
-    "JavaScript",
-    "PostgreSQL",
-    "Node.js",
-    "SQL",
-    "Docker",
-    "REST APIs",
-    "Java",
-    "Kubernetes",
-    "Git",
-    "Github",
-    "Next.js",
-    "Linux",
-    "CSS",
-    "HTML 5",
-    "Tailwind CSS",
-    "MongoDB",
-    "Prisma",
-    "Supabase",
-    "PHP",
-    "SCSS",
-    "Bootstrap",
-    "C++",
-    "C",
-    "Three.js",
+  stackGroups: [
+    {
+      id: "frontend",
+      items: [
+        "React.js",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "HTML 5",
+        "CSS",
+        "SCSS",
+        "Tailwind CSS",
+        "Bootstrap",
+        "shadcn/ui",
+        "Three.js",
+      ],
+    },
+    {
+      id: "backend",
+      items: ["Node.js", "Java", "PHP", "C++", "C", "REST APIs", "SOAP APIs"],
+    },
+    {
+      id: "data",
+      items: ["PostgreSQL", "SQL", "MongoDB", "Prisma", "Supabase"],
+    },
+    {
+      id: "infra",
+      items: ["Docker", "Kubernetes", "Linux", "Git", "Github"],
+    },
   ],
 
   // TODO: Add location if you want it shown publicly (e.g. "Europe · Remote")

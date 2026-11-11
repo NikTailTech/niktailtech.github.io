@@ -41,8 +41,8 @@ export interface Profile {
   personalStatement: string;
   about: string[];
   focusAreas: FocusArea[];
-  /** Inline tech stack shown in the Hero “Stack signal” panel */
-  stackSignal: string[];
+  /** Grouped tech stack shown in the TL;DR section */
+  stackGroups: { id: string; items: string[] }[];
   location?: string;
   availability?: string;
   githubUsername: string;

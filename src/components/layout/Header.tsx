@@ -13,6 +13,7 @@ export function Header() {
   const { t } = useLocale();
 
   const navigation = [
+    { label: t.nav.tldr, href: "#tldr" },
     { label: t.nav.about, href: "#about" },
     { label: t.nav.experience, href: "#experience" },
     { label: t.nav.skills, href: "#skills" },

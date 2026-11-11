@@ -5,6 +5,7 @@ export type Dictionary = {
     skipToContent: string;
   };
   nav: {
+    tldr: string;
     about: string;
     experience: string;
     skills: string;
@@ -31,13 +32,18 @@ export type Dictionary = {
     eyebrow: string;
     exploreProjects: string;
     getInTouch: string;
-    focus: string;
+    photoAlt: string;
+  };
+  tldr: {
+    eyebrow: string;
+    lead: string;
     stackSignal: string;
-    focusAreasLabel: string;
+    stackGroups: Record<string, string>;
   };
   about: {
     eyebrow: string;
     title: string;
+    intro: string;
     basedIn: string;
   };
   experience: {
@@ -81,6 +87,7 @@ export type Dictionary = {
     tagline: string;
     navigate: string;
     connect: string;
+    followMe: string;
     rights: string;
     backToTop: string;
   };

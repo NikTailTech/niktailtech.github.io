@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
@@ -29,57 +30,30 @@ export function Hero() {
 
       <Container className="relative grid min-h-[calc(100svh-var(--nav-height))] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
         <div>
-          <motion.p
-            className="mb-5 font-mono text-xs uppercase tracking-[0.24em] text-accent"
-            initial={reduce ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-          >
-            {t.hero.eyebrow}
-          </motion.p>
-
           <motion.h1
             id="hero-heading"
             className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl"
             initial={reduce ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.05 }}
+            transition={{ duration: 0.55 }}
           >
             {profile.name + " " + profile.surname}
           </motion.h1>
 
           <motion.p
-            className="mt-3 text-xl text-fg-muted sm:text-2xl"
+            className="mt-3 text-2xl text-fg-muted sm:text-3xl"
             initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
+            transition={{ duration: 0.5, delay: 0.08 }}
           >
             {t.profile.title}
-          </motion.p>
-
-          <motion.p
-            className="mt-6 max-w-xl text-base leading-relaxed text-fg-muted sm:text-lg"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.18 }}
-          >
-            {t.profile.shortBio}
-          </motion.p>
-
-          <motion.p
-            className="mt-4 max-w-xl border-l-2 border-accent pl-4 text-sm leading-relaxed text-fg sm:text-base"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.24 }}
-          >
-            {t.profile.personalStatement}
           </motion.p>
 
           <motion.div
             className="mt-8 flex flex-wrap items-center gap-3"
             initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.16 }}
           >
             <Button href="#projects" variant="primary">
               {t.hero.exploreProjects}
@@ -103,49 +77,23 @@ export function Hero() {
           </motion.div>
         </div>
 
-        <motion.aside
-          className="relative hidden lg:block"
-          aria-label={t.hero.focusAreasLabel}
+        <motion.div
+          className="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none"
           initial={reduce ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="relative overflow-hidden rounded-sm border border-border bg-bg-elevated">
-            <div
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,color-mix(in_srgb,var(--accent)_22%,transparent),transparent_55%)]"
-              aria-hidden
+          <div className="relative aspect-[4/5] overflow-hidden border border-border bg-bg-elevated">
+            <Image
+              src="/images/profile-placeholder.svg"
+              alt={t.hero.photoAlt}
+              fill
+              priority
+              className="object-cover"
+              sizes="(max-width: 1024px) 24rem, 28rem"
             />
-            <div className="relative m-6 flex flex-col border border-border/80 p-6">
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-subtle">
-                {t.hero.focus}
-              </p>
-              <ul className="mt-4 space-y-3.5">
-                {t.profile.focusAreas.map((area) => (
-                  <li key={area.title} className="flex gap-3">
-                    <span
-                      className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-accent"
-                      aria-hidden
-                    />
-                    <div>
-                      <p className="text-sm font-medium text-fg">{area.title}</p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-fg-muted">
-                        {area.description}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 border-t border-border pt-5">
-                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-subtle">
-                  {t.hero.stackSignal}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-fg">
-                  {profile.stackSignal.join(" • ")}
-                </p>
-              </div>
-            </div>
           </div>
-        </motion.aside>
+        </motion.div>
       </Container>
     </section>
   );

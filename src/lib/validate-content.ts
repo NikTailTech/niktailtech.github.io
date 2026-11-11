@@ -43,7 +43,14 @@ export const profileSchema = z.object({
       }),
     )
     .min(1),
-  stackSignal: z.array(z.string().min(1)).min(1),
+  stackGroups: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        items: z.array(z.string().min(1)).min(1),
+      }),
+    )
+    .min(1),
   email: z.string().min(1),
   emailConfigured: z.boolean(),
   cvPath: z.string().startsWith("/"),
