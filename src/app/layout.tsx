@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
@@ -5,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { ThemeScript } from "@/components/layout/ThemeScript";
 import { profile } from "@/data/profile";
 import "./globals.css";
+
 
 const display = Syne({
   variable: "--font-display",
@@ -81,7 +83,7 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
