@@ -257,6 +257,30 @@ Un saluto,
         "Messa online e donazione del progetto all’associazione",
       ],
     },
+    "crypto-tracker": {
+      name: "Crypto Tracker",
+      shortDescription:
+        "App self-hosted per registrare le transazioni crypto, calcolare il costo di carico e seguire l’andamento del portfolio.",
+      detailedDescription:
+        "App Next.js in locale per il portfolio personale: acquisti, vendite, swap, trasferimenti e staking, con strategie FIFO, LIFO e costo medio. I prezzi si possono aggiornare da Kraken e il report fiscale annuale si esporta in CSV o JSON. I dati restano nel tuo database PostgreSQL.",
+      highlights: [
+        "Motore di cost basis con FIFO, LIFO e costo medio",
+        "Import CSV da Kraken e aggiornamento prezzi live",
+        "Report fiscale annuale, più export e import del backup",
+      ],
+    },
+    "finance-tracker": {
+      name: "Finance Tracker",
+      shortDescription:
+        "App self-hosted di finanza personale per conti, buste e saldi in EUR e CHF.",
+      detailedDescription:
+        "Pensata per un setup Italia–Svizzera: conti correnti in EUR e CHF, ognuno diviso in Needs, Play, Investment e Savings. I saldi escono dal registro, e trasferimenti o cambi valuta restano separati da entrate e uscite.",
+      highlights: [
+        "Dashboard con patrimonio netto in doppia valuta e ripartizione per categoria",
+        "Movimenti tra conti, buste e EUR–CHF che non contano come entrate o uscite",
+        "Debiti, template ricorrenti e deploy con Docker o Kubernetes",
+      ],
+    },
   },
   projectFilters: {
     all: "Tutti",
