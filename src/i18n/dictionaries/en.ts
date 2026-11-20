@@ -57,7 +57,6 @@ export const en: Dictionary = {
     title: "What I work with",
     description: "Every skill here is on my CV or in a linked project.",
     alsoOnCv: "Also on my CV",
-    beyondTheStack: "Beyond the stack",
   },
   projects: {
     eyebrow: "Work",

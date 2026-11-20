@@ -53,15 +53,9 @@ export const cvIt: CvTranslation = {
     },
   },
   skillLabels: {
-    "Java (training)": "Java (formazione)",
     "REST and SOAP APIs": "API REST e SOAP",
     "Cursor (AI-assisted development)": "Cursor (sviluppo assistito da AI)",
   },
-  beyondTheStack: [
-    { title: "Web3", description: "Ho creato una collezione NFT e il relativo smart contract in Solidity." },
-    { title: "3D", description: "Modellazione in Blender e Fusion 360." },
-    { title: "Design", description: "Graphic design con Adobe CC e Figma." },
-  ],
   experience: {
     "franklin-switzerland": {
       location: "Sorengo, Svizzera",

@@ -59,7 +59,6 @@ export type Dictionary = {
     title: string;
     description: string;
     alsoOnCv: string;
-    beyondTheStack: string;
   };
   projects: {
     eyebrow: string;

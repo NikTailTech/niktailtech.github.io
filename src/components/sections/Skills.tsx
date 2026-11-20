@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Skills({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
-  const { alsoOnCv, beyondTheStack, skillTiers } = getContent(locale);
+  const { alsoOnCv, skillTiers } = getContent(locale);
 
   return (
     <Section id="skills" labelledBy="skills-heading">
@@ -42,20 +42,6 @@ export function Skills({ locale }: { locale: Locale }) {
         </span>{" "}
         {alsoOnCv.join(", ")}
       </p>
-
-      <div className="mt-10 border-t border-border pt-6">
-        <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
-          {t.skills.beyondTheStack}
-        </h3>
-        <dl className="mt-4 grid gap-4 sm:grid-cols-3">
-          {beyondTheStack.map((item) => (
-            <div key={item.title}>
-              <dt className="text-sm font-medium text-fg">{item.title}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-fg-muted">{item.description}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
     </Section>
   );
 }

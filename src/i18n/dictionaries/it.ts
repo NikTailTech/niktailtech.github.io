@@ -57,7 +57,6 @@ export const it: Dictionary = {
     title: "Con cosa lavoro",
     description: "Ogni competenza qui è nel mio CV o in un progetto collegato.",
     alsoOnCv: "Anche nel mio CV",
-    beyondTheStack: "Oltre lo stack",
   },
   projects: {
     eyebrow: "Lavori",

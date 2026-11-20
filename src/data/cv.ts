@@ -119,7 +119,6 @@ export const skillTiers: SkillTier[] = [
       "Fusion 360",
       "Adobe CC",
       "Figma",
-      "Java (training)",
     ],
   },
 ];
@@ -133,12 +132,6 @@ export const alsoOnCv = [
   "REST and SOAP APIs",
   "Postman",
   "Cursor (AI-assisted development)",
-];
-
-export const beyondTheStack: FocusArea[] = [
-  { title: "Web3", description: "Created an NFT collection and its smart contract in Solidity." },
-  { title: "3D", description: "Modeling in Blender and Fusion 360." },
-  { title: "Design", description: "Graphic design in Adobe CC and Figma." },
 ];
 
 export const experience: ExperienceItem[] = [

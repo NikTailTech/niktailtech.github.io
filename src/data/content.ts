@@ -12,7 +12,6 @@ const english = {
   about: cv.about,
   skillTiers: cv.skillTiers,
   alsoOnCv: cv.alsoOnCv,
-  beyondTheStack: cv.beyondTheStack,
   experience: cv.experience,
   education: cv.education,
   projects: cv.projects,
@@ -46,7 +45,6 @@ function translate(tr: CvTranslation): Content {
       skills: tier.skills.map(label),
     })),
     alsoOnCv: cv.alsoOnCv.map(label),
-    beyondTheStack: tr.beyondTheStack,
     experience: cv.experience.map((item) => ({
       ...item,
       ...tr.experience[item.id],

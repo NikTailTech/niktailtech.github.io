@@ -112,9 +112,8 @@ export interface CvTranslation {
   glance: { areas: FocusArea[]; also: string };
   about: { title: string; subtitle: string; paragraphs: string[] };
   skillTiers: Record<string, { title: string; description: string }>;
-  /** Skill names that contain prose, e.g. "Java (training)" */
+  /** Skill names that contain prose, e.g. "REST and SOAP APIs" */
   skillLabels: Record<string, string>;
-  beyondTheStack: FocusArea[];
   experience: Record<string, { location: string; context?: string; bullets: string[] }>;
   education: Record<string, { qualification: string; location: string }>;
   projects: Record<

@@ -92,11 +92,11 @@ describe("positioning copy", () => {
     expect(words).toBeLessThanOrEqual(150);
   });
 
-  it("lists every skill once, with Java only as training and no C/C++", () => {
+  it("lists every skill once, with no bare Java or C/C++", () => {
     const all = [...cv.skillTiers.flatMap((tier) => tier.skills), ...cv.alsoOnCv];
     const normalized = all.map((s) => s.toLowerCase().replace(/\s+/g, ""));
     expect(new Set(normalized).size).toBe(normalized.length);
-    expect(all.filter((s) => /\bjava\b/i.test(s))).toEqual(["Java (training)"]);
+    expect(all.filter((s) => /\bjava\b/i.test(s))).toEqual([]);
     expect(all.some((s) => /^c(\+\+)?$/i.test(s))).toBe(false);
   });
 });
@@ -120,7 +120,6 @@ describe("Italian translation", () => {
       expect(Boolean(tr.architecture), project.id).toBe(Boolean(project.architecture));
     }
     expect(cvIt.glance.areas.length).toBe(cv.glance.areas.length);
-    expect(cvIt.beyondTheStack.length).toBe(cv.beyondTheStack.length);
     for (const label of Object.keys(cvIt.skillLabels)) {
       expect([...cv.skillTiers.flatMap((t) => t.skills), ...cv.alsoOnCv, ...cv.experience.flatMap((e) => e.technologies)]).toContain(label);
     }
