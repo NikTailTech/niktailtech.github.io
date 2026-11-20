@@ -41,8 +41,11 @@ export interface Profile {
   personalStatement: string;
   about: string[];
   focusAreas: FocusArea[];
-  /** Grouped tech stack shown in the TL;DR section */
-  stackGroups: { id: string; items: string[] }[];
+  /** Daily / also buckets, each split into domain rows (frontend, backend, …) */
+  stackGroups: {
+    id: string;
+    domains: { id: string; items: string[] }[];
+  }[];
   location?: string;
   availability?: string;
   githubUsername: string;
@@ -83,11 +86,16 @@ export interface SkillItem {
   note?: string;
 }
 
+export interface SkillDomain {
+  id: string;
+  skills: SkillItem[];
+}
+
 export interface SkillCategory {
   id: string;
   title: string;
   description: string;
-  skills: SkillItem[];
+  domains: SkillDomain[];
 }
 
 export interface Project {
@@ -96,6 +104,10 @@ export interface Project {
   shortDescription: string;
   detailedDescription: string;
   category: ProjectCategory;
+  /** Role on the project, shown on the card instead of a status badge */
+  role: string;
+  /** Year or year range, e.g. "2025" or "2024–2025" */
+  year: string;
   technologies: string[];
   image: string;
   images?: string[];

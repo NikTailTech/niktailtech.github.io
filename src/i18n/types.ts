@@ -32,13 +32,13 @@ export type Dictionary = {
     eyebrow: string;
     exploreProjects: string;
     getInTouch: string;
-    photoAlt: string;
   };
   tldr: {
     eyebrow: string;
     lead: string;
     stackSignal: string;
     stackGroups: Record<string, string>;
+    stackDomains: Record<string, string>;
   };
   about: {
     eyebrow: string;
@@ -117,6 +117,7 @@ export type Dictionary = {
       shortDescription: string;
       detailedDescription: string;
       highlights: string[];
+      role?: string;
     }
   >;
   projectFilters: Record<string, string>;

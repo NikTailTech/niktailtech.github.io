@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { ArrowDownRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "@/data/profile";
@@ -28,8 +27,8 @@ export function Hero() {
         aria-hidden
       />
 
-      <Container className="relative grid min-h-[calc(100svh-var(--nav-height))] grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
-        <div>
+      <Container className="relative flex min-h-[calc(100svh-var(--nav-height))] items-center py-16 lg:py-20">
+        <div className="max-w-3xl">
           <motion.h1
             id="hero-heading"
             className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl"
@@ -76,24 +75,6 @@ export function Hero() {
             ) : null}
           </motion.div>
         </div>
-
-        <motion.div
-          className="relative mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none"
-          initial={reduce ? false : { opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="relative aspect-[4/5] overflow-hidden border border-border bg-bg-elevated">
-            <Image
-              src="/images/profile-placeholder.svg"
-              alt={t.hero.photoAlt}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 24rem, 28rem"
-            />
-          </div>
-        </motion.div>
       </Container>
     </section>
   );

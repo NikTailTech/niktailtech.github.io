@@ -8,6 +8,8 @@ import { GitHubIcon } from "@/components/ui/SocialIcons";
 import { useLocale } from "@/i18n/LocaleProvider";
 import type { Project } from "@/types";
 
+const STACK_PREVIEW = 4;
+
 export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const reduce = useReducedMotion();
   const { t } = useLocale();
@@ -18,6 +20,9 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   const detailedDescription =
     localized?.detailedDescription ?? project.detailedDescription;
   const highlights = localized?.highlights ?? project.highlights;
+  const role = localized?.role ?? project.role;
+  const stackPreview = project.technologies.slice(0, STACK_PREVIEW);
+  const stackExtra = project.technologies.length - stackPreview.length;
 
   return (
     <motion.article
@@ -50,10 +55,18 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
-        <div className="pointer-events-none absolute left-3 top-3 z-[2] flex gap-2">
-          <Badge tone={project.isPlaceholder ? "warn" : "accent"}>
-            {t.projects.status[project.status]}
-          </Badge>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] bg-gradient-to-t from-black/70 via-black/35 to-transparent px-3 pb-3 pt-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">
+            {role}
+            <span className="mx-2 text-white/50" aria-hidden>
+              ·
+            </span>
+            {project.year}
+          </p>
+          <p className="mt-1.5 text-xs leading-snug text-white/85">
+            {stackPreview.join(" · ")}
+            {stackExtra > 0 ? ` · +${stackExtra}` : ""}
+          </p>
         </div>
       </div>
 

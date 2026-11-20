@@ -4,10 +4,11 @@ import type { Project, ProjectCategory } from "@/types";
  * Featured projects. Replace placeholders with real work.
  * Images live under public/images/projects/
  *
- * Set to "live" when case studies are ready — project cards and filters stay intact.
+ * Set to "live" when case studies are ready — project cards stay intact.
  */
 export const projectsSectionMode: "coming-soon" | "live" = "live";
 
+/** Kept for when filters return; not rendered while the catalog is small. */
 export const projectFilters: { id: ProjectCategory | "all"; label: string }[] = [
   { id: "all", label: "All" },
   { id: "full-stack", label: "Full Stack" },
@@ -22,13 +23,13 @@ export const projects: Project[] = [
   {
     id: "arischiogatti",
     name: "Arischiogatti",
-
-
     shortDescription:
       "Website for the Arischiogatti di Crema association — shelter, care, and adoption support for cats in need.",
     detailedDescription:
       "End-to-end delivery of the association’s public website: full visual design, Drupal CMS integration for content management, and production deployment. The project was donated to the association to support their work in Crema and the surrounding area.",
     category: "full-stack",
+    role: "Full Stack Developer",
+    year: "2025",
     technologies: [
       "Next.js",
       "React.js",
@@ -39,9 +40,7 @@ export const projects: Project[] = [
       "HTML",
       "CSS",
     ],
-
     image: "/images/projects/arischiogatti-cover.png",
-
     status: "completed",
     highlights: [
       "Complete visual design of the public site",
@@ -49,7 +48,6 @@ export const projects: Project[] = [
       "Production deploy, donated to the association",
     ],
     liveUrl: "https://arischiogatti.it/",
-
     isPlaceholder: false,
   },
   {
@@ -60,6 +58,8 @@ export const projects: Project[] = [
     detailedDescription:
       "A local Next.js app for personal portfolio management: buys, sells, swaps, transfers, and staking, with FIFO, LIFO, and average-cost strategies. Prices can refresh from Kraken, and a yearly tax report exports to CSV or JSON. Portfolio data stays in your own PostgreSQL database.",
     category: "full-stack",
+    role: "Full Stack Developer",
+    year: "2025",
     technologies: [
       "Next.js",
       "React",
@@ -88,6 +88,8 @@ export const projects: Project[] = [
     detailedDescription:
       "Built for an Italian–Swiss setup: checking accounts in EUR and CHF, each split into Needs, Play, Investment, and Savings. Balances are computed from the ledger, and transfers or currency conversions stay separate from income and expenses.",
     category: "full-stack",
+    role: "Full Stack Developer",
+    year: "2025",
     technologies: [
       "Next.js",
       "React",
@@ -104,7 +106,7 @@ export const projects: Project[] = [
     highlights: [
       "Dashboard with FX-aware net worth and category breakdown",
       "Account, envelope, and EUR–CHF moves that are not income or expenses",
-      "Debts, recurring templates, and Docker or Kubernetes deploy",
+      "Debts, recurring templates, and deploy on Docker or my homelab Kubernetes",
     ],
     isPlaceholder: false,
   },

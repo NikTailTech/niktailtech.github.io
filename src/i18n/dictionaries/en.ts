@@ -32,22 +32,27 @@ export const en: Dictionary = {
     eyebrow: "Portfolio",
     exploreProjects: "Explore Projects",
     getInTouch: "Get in Touch",
-    photoAlt: "Still casting myself for this role",
   },
   tldr: {
     eyebrow: "TL;DR",
     lead: "Too long? Here’s the cheat sheet.",
     stackSignal: "Stack",
     stackGroups: {
+      daily: "Daily use",
+      also: "Also use",
+    },
+    stackDomains: {
       frontend: "Frontend",
       backend: "Backend",
       data: "Data",
-      infra: "Infra & systems",
+      cloud: "Cloud & infra",
+      libraries: "Libraries",
+      design: "Design",
     },
   },
   about: {
     eyebrow: "About",
-    title: "Building Beyond Code",
+    title: "End to End, Design to Deploy",
     intro: "A short look at how I work, what I dig into, and why I build the way I do.",
     basedIn: "Based in",
   },
@@ -60,13 +65,13 @@ export const en: Dictionary = {
     eyebrow: "Skills",
     title: "Technical Skills",
     description:
-      "Languages, frameworks, and tools I use across frontend, backend, data, infrastructure, design, 3D printing, and Web3.",
+      "Split by how often I use them: day-to-day tools, then others I know and can work with.",
   },
   projects: {
     eyebrow: "Work",
-    title: "Featured projects",
+    title: "Featured Projects",
     description:
-      "A few selected pieces for now. I'm sorting through more projects and will publish others soon.",
+      "Selected work across product engineering, self-hosted tools, and client delivery.",
     comingSoonEyebrow: "In progress",
     comingSoonTitle: "Coming soon",
     comingSoonBody:
@@ -120,8 +125,8 @@ Best regards,
       "Open to professional opportunities and technical collaborations — full stack roles, product work, and projects where I can own features from design to production.",
     about: [
       "I'm a Full Stack Developer. I like building software end to end — the interface people use, the services behind it, and the infrastructure that keeps it running.",
-      "I don't stop at writing features. Architecture, data models, how it scales, whether it holds up — that stuff matters to me. I spend time with Linux, Docker, Kubernetes, networking, and CI/CD because apps have to work outside a laptop, not just in local.",
-      "Outside day-to-day product work I dig into crypto and blockchain. I made an NFT collection and wrote the smart contract for it, mostly to go through the whole flow myself. I also do 3D modeling, digital fabrication, printing, and visual design when I want something more hands-on.",
+      "I don't stop at writing features. Architecture, data models, and how things hold up in production matter to me. Day to day that means TypeScript, React, Next.js, PHP, SQL, Docker, and Linux — making sure an app works outside a laptop, not just in local.",
+      "Outside product work I also do 3D modeling, digital fabrication, printing, and visual design when I want something more hands-on — and I use Three.js when an interface needs real 3D in the browser.",
       "I learn by trying things and taking on problems I haven't seen before. Shipping an app, setting up infra, or making a design real — that's when it clicks for me.",
       "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
     ],
@@ -130,37 +135,22 @@ Best regards,
       {
         title: "Full Stack Development",
         description:
-          "Frontend, backend, application architecture, APIs and scalable applications.",
+          "Interfaces, APIs, and application logic with React, Next.js, TypeScript, Node.js, and PHP.",
       },
       {
-        title: "Cloud-Native & Infrastructure",
-        description: "Docker, Kubernetes, Linux, containerization and orchestration.",
-      },
-      {
-        title: "AI & Intelligent Development",
+        title: "Databases & APIs",
         description:
-          "AI-assisted coding, LLMs, prompt engineering, AI-driven workflows, developer productivity and applied AI.",
+          "Relational data modeling, SQL, PostgreSQL, Prisma, and REST services that stay maintainable.",
       },
       {
-        title: "Web3 & Blockchain",
+        title: "Shipping & Environments",
         description:
-          "Decentralized applications, blockchain ecosystems, smart contracts and digital ownership.",
+          "Docker, Linux, and Git day to day; personal homelab Kubernetes for self-hosted apps.",
       },
       {
-        title: "Systems Engineering & Automation",
+        title: "Side Practice",
         description:
-          "Linux environments, networking, scripting, system administration and automation.",
-      },
-      {
-        title: "3D Modeling & Digital Fabrication",
-        description:
-          "Organic and geometric modeling, G-code and product production.",
-
-      },
-      {
-        title: "Graphic & Visual Design",
-        description:
-          "Adobe Creative Suite, visual communication, digital aesthetics and multimedia creation.",
+          "Design in Figma, Three.js in the browser, and hands-on 3D / fabrication when I want a break from product work.",
       },
     ],
   },
@@ -169,14 +159,14 @@ Best regards,
       title: "Full Stack Developer",
       location: "Sorengo, Ticino, Switzerland",
       summary:
-        "Designed and developed the company's new website, covering the entire process from UI design in Figma to implementation using Next.js, React, TypeScript and Tailwind CSS. Ensured consistency with the company's visual identity and design standards. Worked in an international environment where communication was primarily conducted in English.",
+        "Built the company's new website end to end — UI in Figma through implementation with Next.js, React, TypeScript, and Tailwind CSS — keeping visual identity and design standards consistent. Worked in an international team with English as the main language. The public launch was later deprioritized after an internal reorganization.",
       responsibilities: [
-        "Web Development: Designed and developed modern web interfaces and company websites, with a focus on usability, responsive layouts and brand consistency.",
-        "Internal Applications: Built custom internal web applications and tools, including solutions for generating branded emails and personalized QR codes.",
-        "CMS & CRM Integration: Customized and extended CMS and CRM functionalities, configured YAML-based modules and integrated embedded forms with custom CSS styling.",
-        "Website Maintenance & Automation: Developed PHP automations for existing websites, troubleshot technical issues, applied patches and addressed security vulnerabilities.",
-        "Landing Pages & Lead Generation: Collaborated with the team on the design and development of website pages and landing pages, focusing on user profiling and lead generation.",
-        "Visual Design & Communication: Created graphic assets and corporate communication materials, including flyers and brochures, supporting marketing and communication activities.",
+        "Web Development: Designed and built modern web interfaces for the company site, with attention to usability, responsive layouts, and brand consistency.",
+        "Internal Applications: Built custom internal web tools, including branded email generation and personalized QR codes.",
+        "CMS & CRM Integration: Customized CMS and CRM modules, configured YAML-based setups, and styled embedded forms.",
+        "Website Maintenance & Automation: Wrote PHP automations for existing sites, fixed issues, applied patches, and addressed security findings.",
+        "Landing Pages & Lead Generation: Collaborated on pages and landing pages aimed at user profiling and lead capture.",
+        "Visual Design & Communication: Produced graphic assets and print materials (flyers, brochures) for marketing and communication.",
       ],
     },
     "sl-technology": {
@@ -206,50 +196,16 @@ Best regards,
     },
   },
   skillCategories: {
-    web: {
-      title: "Web Development",
-      description: "Interfaces, frameworks, styling, and web application delivery.",
+    daily: {
+      title: "Daily use",
+      description: "What I use regularly to ship interfaces, APIs, data, and deploys.",
     },
-    database: {
-      title: "Database Management",
-      description:
-        "Relational and document databases, ORM/BaaS tooling, and day-to-day database administration.",
-    },
-    infrastructure: {
-      title: "Infrastructure & DevOps",
-      description:
-        "Systems, containers, networking, and self-hosted environments that support real software.",
-    },
-    blockchain: {
-      title: "Blockchain & Web3",
-      description:
-        "Active interest and practical exploration of crypto ecosystems, Web3 tooling, and digital assets.",
-    },
-    "3d": {
-      title: "3D Modeling & Manufacturing",
-      description:
-        "Digital modeling and fabrication — from sculpting and CAD to printed prototypes.",
-    },
-    design: {
-      title: "Graphic Design & Digital Media",
-      description:
-        "Visual communication and motion — composition, image work, and edited video.",
+    also: {
+      title: "Also use",
+      description: "Technologies I know and can work with when the project needs them.",
     },
   },
-  skillLabels: {
-    "Database design": "Database design",
-    Networking: "Networking",
-    "Self-hosted infrastructure": "Self-hosted infrastructure",
-    "Cryptocurrency ecosystem": "Cryptocurrency ecosystem",
-    "Blockchain technologies": "Blockchain technologies",
-    "Cryptocurrency portfolio tracking": "Cryptocurrency portfolio tracking",
-    "Organic modeling": "Organic modeling",
-    "Digital sculpting": "Digital sculpting",
-    "Hard-surface modeling": "Hard-surface modeling",
-    "3D printing": "3D printing",
-    Prototyping: "Prototyping",
-    Virtualization: "Virtualization",
-  },
+  skillLabels: {},
   projectsContent: {
     arischiogatti: {
       name: "Arischiogatti",
@@ -284,7 +240,7 @@ Best regards,
       highlights: [
         "Dashboard with FX-aware net worth and category breakdown",
         "Account, envelope, and EUR–CHF moves that are not income or expenses",
-        "Debts, recurring templates, and Docker or Kubernetes deploy",
+        "Debts, recurring templates, and deploy on Docker or my homelab Kubernetes",
       ],
     },
   },

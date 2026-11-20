@@ -16,18 +16,27 @@ export function SkillGroup({ category }: { category: SkillCategory }) {
         {title}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-fg-muted">{description}</p>
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {category.skills.map((skill) => (
-          <li key={skill.name}>
-            <Badge>
-              {t.skillLabels[skill.name] ?? skill.name}
-              {skill.level ? (
-                <span className="ml-1.5 text-fg-subtle">· {skill.level}</span>
-              ) : null}
-            </Badge>
-          </li>
+      <div className="mt-5 space-y-4">
+        {category.domains.map((domain) => (
+          <div key={domain.id}>
+            <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-subtle">
+              {t.tldr.stackDomains[domain.id] ?? domain.id}
+            </p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {domain.skills.map((skill) => (
+                <li key={skill.name}>
+                  <Badge>
+                    {t.skillLabels[skill.name] ?? skill.name}
+                    {skill.level ? (
+                      <span className="ml-1.5 text-fg-subtle">· {skill.level}</span>
+                    ) : null}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
         ))}
-      </ul>
+      </div>
     </article>
   );
 }

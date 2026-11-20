@@ -21,6 +21,8 @@ const projectSchema = z.object({
     "blockchain",
     "creative",
   ]),
+  role: z.string().min(1),
+  year: z.string().min(1),
   technologies: z.array(z.string()).min(1),
   image: z.string().startsWith("/"),
   status: z.enum(["concept", "in-progress", "completed", "archived", "placeholder"]),
@@ -47,7 +49,14 @@ export const profileSchema = z.object({
     .array(
       z.object({
         id: z.string().min(1),
-        items: z.array(z.string().min(1)).min(1),
+        domains: z
+          .array(
+            z.object({
+              id: z.string().min(1),
+              items: z.array(z.string().min(1)).min(1),
+            }),
+          )
+          .min(1),
       }),
     )
     .min(1),

@@ -1,24 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { projectFilters, projects, projectsSectionMode } from "@/data/projects";
+import { projects, projectsSectionMode } from "@/data/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { useLocale } from "@/i18n/LocaleProvider";
-import { cn } from "@/lib/utils";
-import type { ProjectCategory } from "@/types";
 
 export function Projects() {
-  const [filter, setFilter] = useState<ProjectCategory | "all">("all");
   const reduce = useReducedMotion();
   const { t } = useLocale();
-
-  const filtered = useMemo(() => {
-    if (filter === "all") return projects;
-    return projects.filter((p) => p.category === filter);
-  }, [filter]);
 
   return (
     <Section id="projects" labelledBy="projects-heading">
@@ -60,46 +51,11 @@ export function Projects() {
           </div>
         </motion.div>
       ) : (
-        <>
-          <div
-            role="tablist"
-            aria-label={t.projects.categoriesLabel}
-            className="mb-8 flex flex-wrap gap-2"
-          >
-            {projectFilters.map((item) => {
-              const selected = filter === item.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setFilter(item.id)}
-                  className={cn(
-                    "rounded-sm border px-3 py-1.5 text-sm transition-colors",
-                    selected
-                      ? "border-accent bg-accent-soft text-fg"
-                      : "border-border text-fg-muted hover:border-border-strong hover:text-fg",
-                  )}
-                >
-                  {t.projectFilters[item.id] ?? item.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {filtered.length === 0 ? (
-            <p className="border border-dashed border-border p-8 text-sm text-fg-muted">
-              —
-            </p>
-          ) : (
-            <div className="grid gap-5 md:grid-cols-2">
-              {filtered.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </div>
-          )}
-        </>
+        <div className="grid gap-5 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
       )}
     </Section>
   );

@@ -39,19 +39,28 @@ export function Tldr() {
           {t.tldr.stackSignal}
         </p>
 
-        <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-5 grid gap-10 md:grid-cols-2">
           {profile.stackGroups.map((group) => (
-            <div key={group.id}>
+            <div key={group.id} className="space-y-5">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg">
                 {t.tldr.stackGroups[group.id] ?? group.id}
               </p>
-              <ul className="mt-3 flex flex-wrap gap-1.5">
-                {group.items.map((item) => (
-                  <li key={item}>
-                    <Badge>{item}</Badge>
-                  </li>
-                ))}
-              </ul>
+              {group.domains.map((domain) => (
+                <div key={domain.id}>
+                  <p className="text-xs font-medium text-fg-muted">
+                    {t.tldr.stackDomains[domain.id] ?? domain.id}
+                  </p>
+                  <ul className="mt-2 flex flex-wrap gap-1.5">
+                    {domain.items.map((item) => (
+                      <li key={item}>
+                        <Badge tone={group.id === "daily" ? "accent" : "neutral"}>
+                          {item}
+                        </Badge>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           ))}
         </div>

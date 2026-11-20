@@ -32,22 +32,27 @@ export const it: Dictionary = {
     eyebrow: "Portfolio",
     exploreProjects: "Guarda i progetti",
     getInTouch: "Contattami",
-    photoAlt: "Sto ancora facendo i casting di me stesso",
   },
   tldr: {
     eyebrow: "TL;DR",
     lead: "Troppo lungo? Ecco il riassunto furbo.",
     stackSignal: "Stack",
     stackGroups: {
+      daily: "Uso quotidiano",
+      also: "So usare anche",
+    },
+    stackDomains: {
       frontend: "Frontend",
       backend: "Backend",
       data: "Data",
-      infra: "Infra e sistemi",
+      cloud: "Cloud e infra",
+      libraries: "Librerie",
+      design: "Design",
     },
   },
   about: {
     eyebrow: "Chi sono",
-    title: "Costruire oltre il codice",
+    title: "End to End, Design to Deploy",
     intro: "Un pezzo su come lavoro, cosa mi interessa e perché costruisco così.",
     basedIn: "Con sede a",
   },
@@ -60,13 +65,13 @@ export const it: Dictionary = {
     eyebrow: "Skills",
     title: "Competenze Tecniche",
     description:
-      "Linguaggi, framework e tool che uso tra frontend, backend, data, infrastruttura, design, stampa 3D e Web3.",
+      "Divise per quanto le uso: tool di tutti i giorni, poi altre che conosco e so usare quando servono.",
   },
   projects: {
     eyebrow: "Lavori",
-    title: "Progetti in evidenza",
+    title: "Progetti in Evidenza",
     description:
-      "Per ora qualche pezzo selezionato. Sto organizzando gli altri progetti e a breve ne pubblicherò di nuovi.",
+      "Lavori selezionati tra product engineering, tool self-hosted e delivery per clienti.",
     comingSoonEyebrow: "In preparazione",
     comingSoonTitle: "Prossimamente",
     comingSoonBody:
@@ -120,43 +125,31 @@ Un saluto,
       "Sono aperto a opportunità professionali e collaborazioni tecniche: ruoli Full Stack, lavoro su prodotto e progetti in cui possa seguire le feature dal design fino alla produzione.",
     about: [
       "Sono un Full Stack Developer. Mi piace costruire software da un capo all’altro: l’interfaccia che usi, i servizi dietro, e l’infrastruttura che lo tiene in piedi.",
-      "Non mi fermo a scrivere feature. Architettura, modelli dati, se scala, se regge — per me conta. Perdo tempo con Linux, Docker, Kubernetes, networking e CI/CD perché un’app deve funzionare fuori dal laptop, non solo in locale.",
-      "Fuori dal lavoro di prodotto mi metto su crypto e blockchain. Ho fatto una collection NFT e scritto lo smart contract, soprattutto per passare da solo tutto il flusso. Faccio anche modellazione 3D, fabbricazione digitale, stampa e visual design quando voglio qualcosa di più concreto tra le mani.",
+      "Non mi fermo a scrivere feature. Architettura, modelli dati e come reggono in produzione per me contano. Nel quotidiano lavoro con TypeScript, React, Next.js, PHP, SQL, Docker e Linux — così un’app funziona fuori dal laptop, non solo in locale.",
+      "Fuori dal prodotto faccio anche modellazione 3D, fabbricazione digitale, stampa e visual design quando voglio qualcosa di più concreto tra le mani — e uso Three.js quando un’interfaccia ha bisogno di vero 3D nel browser.",
       "Imparo provando e buttandomi su problemi che non ho ancora visto. Rilasciare un’app, configurare infra, o far diventare reale un design: è lì che mi torna tutto.",
       "Quello che mi tiene in moto è semplice: capire come funziona una cosa, trovare un modo più pulito per costruirla, e far diventare reale un’idea ancora confusa.",
     ],
     focusAreas: [
       {
         title: "Sviluppo Full Stack",
-        description: "Frontend, backend, Architettura, API e applicazioni scalabili.",
-      },
-      {
-        title: "Cloud-native e infrastruttura",
-        description: "Docker, Kubernetes, Linux, containerizzazione e orchestrazione.",
-      },
-      {
-        title: "AI e sviluppo assistito",
         description:
-          "Sviluppo con AI, LLM, prompt engineering, workflow supportati dall’AI e produttività.",
+          "Interfacce, API e logica applicativa con React, Next.js, TypeScript, Node.js e PHP.",
       },
       {
-        title: "Web3 e blockchain",
+        title: "Database e API",
         description:
-          "Applicazioni decentralizzate, ecosistemi blockchain, smart contract e digital ownership.",
+          "Modellazione relazionale, SQL, PostgreSQL, Prisma e servizi REST pensati per restare mantenibili.",
       },
       {
-        title: "Sistemi e automazione",
+        title: "Shipping e ambienti",
         description:
-          "Ambienti Linux, networking, scripting, amministrazione di sistema e automazione.",
+          "Docker, Linux e Git nel quotidiano; Kubernetes sul homelab per app self-hosted.",
       },
       {
-        title: "Modellazione 3D e fabbricazione",
-        description: "Modellazione organica e geometrica, G-code e produzione.",
-      },
-      {
-        title: "Graphic e visual design",
+        title: "Side practice",
         description:
-          "Adobe Creative Suite, comunicazione visiva, estetica digitale e multimedia.",
+          "Design in Figma, Three.js nel browser e 3D / fabbricazione quando voglio staccare dal prodotto.",
       },
     ],
   },
@@ -165,14 +158,14 @@ Un saluto,
       title: "Full Stack Developer",
       location: "Sorengo, Ticino, Svizzera",
       summary:
-        "Ho progettato e sviluppato il nuovo sito dell’azienda, dal design UI in Figma fino all’implementazione con Next.js, React, TypeScript e Tailwind CSS. Ho curato la coerenza con l’identità visiva e gli standard di design. Lavoro in un contesto internazionale, con comunicazione soprattutto in inglese.",
+        "Ho costruito il nuovo sito dell’azienda end to end — dalla UI in Figma all’implementazione con Next.js, React, TypeScript e Tailwind CSS — tenendo coerenti identità visiva e standard di design. Contesto internazionale, comunicazione soprattutto in inglese. Il go-live pubblico è stato poi deprioritizzato dopo una riorganizzazione interna.",
       responsibilities: [
-        "Sviluppo web: interfacce moderne e siti aziendali, con attenzione a usabilità, responsive e coerenza di brand.",
-        "Applicazioni interne: tool web su misura, tra cui soluzioni per email branded e QR code personalizzati.",
-        "Integrazione CMS e CRM: personalizzazione ed estensione di funzionalità, moduli in YAML e form incorporati con CSS dedicato.",
-        "Manutenzione e automazione: script PHP su siti esistenti, risoluzione di problemi tecnici, patch e interventi di sicurezza.",
-        "Landing e lead generation: collaborazione su pagine e landing page, con attenzione a profilazione utenti e raccolta contatti.",
-        "Design e comunicazione: materiali grafici aziendali (flyer, brochure) a supporto di marketing e comunicazione.",
+        "Sviluppo web: interfacce moderne per il sito aziendale, con attenzione a usabilità, responsive e coerenza di brand.",
+        "Applicazioni interne: tool web su misura, tra cui email branded e QR code personalizzati.",
+        "Integrazione CMS e CRM: moduli personalizzati, setup in YAML e form incorporati con CSS dedicato.",
+        "Manutenzione e automazione: script PHP su siti esistenti, fix, patch e interventi di sicurezza.",
+        "Landing e lead generation: pagine e landing per profilazione utenti e raccolta contatti.",
+        "Design e comunicazione: materiali grafici (flyer, brochure) per marketing e comunicazione.",
       ],
     },
     "sl-technology": {
@@ -202,48 +195,16 @@ Un saluto,
     },
   },
   skillCategories: {
-    web: {
-      title: "Sviluppo web",
-      description: "Interfacce, framework, stili e realizzazione di applicazioni web.",
+    daily: {
+      title: "Uso quotidiano",
+      description: "Quello che uso di solito per interfacce, API, dati e deploy.",
     },
-    database: {
-      title: "Database",
-      description:
-        "Database relazionali e documentali, ORM/BaaS e gestione quotidiana dei dati.",
-    },
-    infrastructure: {
-      title: "Infrastruttura e DevOps",
-      description:
-        "Sistemi, container, networking e ambienti self-hosted a supporto del software in produzione.",
-    },
-    blockchain: {
-      title: "Blockchain e Web3",
-      description:
-        "Interesse pratico verso crypto, strumenti Web3 e asset digitali.",
-    },
-    "3d": {
-      title: "Modellazione 3D e fabbricazione",
-      description: "Dal modello digitale al pezzo fisico: sculpting, CAD e prototipi stampati.",
-    },
-    design: {
-      title: "Graphic design e digital media",
-      description: "Comunicazione visiva e motion: composizione, immagini e video.",
+    also: {
+      title: "So usare anche",
+      description: "Tecnologie che conosco e so usare quando il progetto le richiede.",
     },
   },
-  skillLabels: {
-    "Database design": "Progettazione database",
-    Networking: "Networking",
-    "Self-hosted infrastructure": "Infrastruttura self-hosted",
-    "Cryptocurrency ecosystem": "Ecosistema crypto",
-    "Blockchain technologies": "Tecnologie blockchain",
-    "Cryptocurrency portfolio tracking": "Monitoraggio portfolio crypto",
-    "Organic modeling": "Modellazione organica",
-    "Digital sculpting": "Sculpting digitale",
-    "Hard-surface modeling": "Modellazione hard-surface",
-    "3D printing": "Stampa 3D",
-    Prototyping: "Prototipazione",
-    Virtualization: "Virtualizzazione",
-  },
+  skillLabels: {},
   projectsContent: {
     arischiogatti: {
       name: "Arischiogatti",
@@ -278,7 +239,7 @@ Un saluto,
       highlights: [
         "Dashboard con patrimonio netto in doppia valuta e ripartizione per categoria",
         "Movimenti tra conti, buste e EUR–CHF che non contano come entrate o uscite",
-        "Debiti, template ricorrenti e deploy con Docker o Kubernetes",
+        "Debiti, template ricorrenti e deploy con Docker o Kubernetes sul mio homelab",
       ],
     },
   },

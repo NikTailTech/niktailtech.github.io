@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google";
+import Script from "next/script";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
@@ -103,17 +104,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${display.variable} ${body.variable} ${mono.variable} h-full`}
       suppressHydrationWarning
     >
-      <head>
-        <ThemeScript />
-      </head>
       <body className="min-h-full flex flex-col antialiased">
+        <ThemeScript />
         <LocaleProvider>
           <SkipLink />
           <Header />
           <div className="flex-1">{children}</div>
           <Footer />
         </LocaleProvider>
-        <script
+        <Script
+          id="person-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
