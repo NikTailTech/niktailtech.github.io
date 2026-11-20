@@ -1,6 +1,7 @@
-import { education, experience, person, seo, skillTiers, socialLinks } from "@/data/cv";
+import type { Content } from "@/data/content";
 
-export function personJsonLd(url: string) {
+export function personJsonLd(url: string, content: Content) {
+  const { education, experience, person, seo, skillTiers, socialLinks } = content;
   const currentRole = experience.find((item) => item.end === null);
 
   return {

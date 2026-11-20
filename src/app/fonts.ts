@@ -1,0 +1,24 @@
+import { IBM_Plex_Mono, IBM_Plex_Sans, Syne } from "next/font/google";
+
+const display = Syne({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["600"],
+  display: "swap",
+});
+
+const body = IBM_Plex_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+export const fontVariables = `${display.variable} ${body.variable} ${mono.variable}`;

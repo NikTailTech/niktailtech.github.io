@@ -1,5 +1,5 @@
 import { Mail } from "lucide-react";
-import { contact, person, socialLinks } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { CopyEmailButton } from "@/components/contact/CopyEmailButton";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Container";
@@ -10,6 +10,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Contact({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { contact, person, socialLinks } = getContent(locale);
   const mailto = `mailto:${person.email}?subject=${encodeURIComponent(contact.mailtoSubject)}&body=${encodeURIComponent(contact.mailtoBody)}`;
 
   return (

@@ -101,6 +101,39 @@ export interface Project {
   repoUrl?: string;
 }
 
+/**
+ * Translated prose for a non-English page. Facts (names, companies, dates, URLs,
+ * stack) are never translated and always come from src/data/cv.ts.
+ */
+export interface CvTranslation {
+  country: string;
+  languages: Record<string, { name: string; level: string }>;
+  hero: { stack: string; valueProposition: string; workAuthorization: string; openTo: string };
+  glance: { areas: FocusArea[]; also: string };
+  about: { title: string; subtitle: string; paragraphs: string[] };
+  skillTiers: Record<string, { title: string; description: string }>;
+  /** Skill names that contain prose, e.g. "Java (training)" */
+  skillLabels: Record<string, string>;
+  beyondTheStack: FocusArea[];
+  experience: Record<string, { location: string; context?: string; bullets: string[] }>;
+  education: Record<string, { qualification: string; location: string }>;
+  projects: Record<
+    string,
+    {
+      outcome: string;
+      role: string;
+      problem: string;
+      approach: string;
+      result: string;
+      decisions?: string[];
+      architecture?: string;
+      imageAlt: string;
+    }
+  >;
+  contact: { heading: string; body: string; mailtoSubject: string; mailtoBody: string };
+  seo: { title: string; description: string; ogImageAlt: string; locale: string };
+}
+
 export interface Seo {
   siteUrl: string;
   title: string;

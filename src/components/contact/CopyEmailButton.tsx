@@ -24,9 +24,21 @@ export function CopyEmailButton({
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
+      return;
     } catch {
-      window.prompt(label, email);
+      // Clipboard API is blocked in some embedded browsers and insecure contexts.
     }
+    const field = document.createElement("textarea");
+    field.value = email;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    const ok = document.execCommand("copy");
+    field.remove();
+    if (ok) setCopied(true);
+    else window.prompt(label, email);
   }
 
   return (

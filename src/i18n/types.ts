@@ -18,6 +18,11 @@ export type Dictionary = {
     openMenu: string;
     closeMenu: string;
   };
+  language: {
+    /** Link to the other language, written in that language */
+    switchLabel: string;
+    switchShort: string;
+  };
   theme: {
     light: string;
     dark: string;
@@ -75,6 +80,11 @@ export type Dictionary = {
     emailMe: string;
     copyEmail: string;
     copied: string;
+  };
+  notFound: {
+    title: string;
+    body: string;
+    back: string;
   };
   footer: {
     navigate: string;

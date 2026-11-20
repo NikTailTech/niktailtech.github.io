@@ -5,6 +5,7 @@ Portfolio of **Nicholas Codazzi**, Full Stack Developer based in Ticino, Switzer
 ## Overview
 
 - Experience, education, languages, skills and project case studies, kept in sync with the CV
+- English at `/`, Italian at `/it/` (separate root layouts for the correct `lang`, hreflang alternates); Italian prose lives in `src/data/cv.it.ts`, facts only in `src/data/cv.ts`
 - Light/dark theme with system preference + local persistence
 - SEO metadata, sitemap, robots.txt, and Person structured data
 - All CV-facing content in a single data file, validated by tests

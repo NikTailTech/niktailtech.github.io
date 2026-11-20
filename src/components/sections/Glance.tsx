@@ -1,10 +1,11 @@
-import { glance } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Section } from "@/components/ui/Container";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/types";
 
 export function Glance({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { glance } = getContent(locale);
 
   return (
     <Section id="glance" labelledBy="glance-heading">

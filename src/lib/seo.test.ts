@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { person, projects, seo, socialLinks } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { personJsonLd, serializeJsonLd } from "./structured-data";
 
 const publicDir = join(process.cwd(), "public");
@@ -43,7 +44,7 @@ describe("SEO metadata", () => {
 });
 
 describe("Person JSON-LD", () => {
-  const data = personJsonLd(`${seo.siteUrl}/`);
+  const data = personJsonLd(`${seo.siteUrl}/`, getContent("en"));
 
   it("describes the person with name, role, location and profiles", () => {
     expect(data).toMatchObject({

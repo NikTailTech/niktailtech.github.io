@@ -1,4 +1,4 @@
-import { projects } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Projects({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { projects } = getContent(locale);
 
   return (
     <Section id="projects" labelledBy="projects-heading">

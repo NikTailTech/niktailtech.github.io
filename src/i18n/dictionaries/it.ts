@@ -17,6 +17,10 @@ export const it: Dictionary = {
     openMenu: "Apri il menu",
     closeMenu: "Chiudi il menu",
   },
+  language: {
+    switchLabel: "Read in English",
+    switchShort: "EN",
+  },
   theme: {
     light: "Tema chiaro. Cambia tema",
     dark: "Tema scuro. Cambia tema",
@@ -27,7 +31,7 @@ export const it: Dictionary = {
     downloadCv: "Scarica il CV",
     viewProjects: "Vedi i progetti",
     contact: "Contatti",
-    basedIn: "Base in",
+    basedIn: "Con base in",
   },
   glance: {
     title: "In breve",
@@ -59,7 +63,7 @@ export const it: Dictionary = {
     eyebrow: "Lavori",
     title: "Progetti in evidenza",
     description:
-      "Lavoro per clienti e strumenti self-hosted: il problema, come l’ho affrontato e cosa è stato rilasciato.",
+      "Lavori per clienti e strumenti self-hosted: il problema, come l’ho affrontato e cosa ho rilasciato.",
     visitSite: "Visita il sito",
     repository: "Repository",
     problem: "Problema",
@@ -75,6 +79,11 @@ export const it: Dictionary = {
     emailMe: "Scrivimi",
     copyEmail: "Copia email",
     copied: "Indirizzo email copiato",
+  },
+  notFound: {
+    title: "Pagina non trovata",
+    body: "Questa pagina non esiste. Il portfolio è una pagina sola.",
+    back: "Torna al portfolio",
   },
   footer: {
     navigate: "Navigazione",

@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import * as cv from "./cv";
+import { cvIt } from "./cv.it";
+import { getContent } from "./content";
 import { dictionaries } from "@/i18n/dictionaries";
 import {
   collectStrings,
@@ -9,7 +11,11 @@ import {
   projectSchema,
 } from "@/lib/validate-content";
 
-const publishedCopy = [...collectStrings(cv), ...collectStrings(dictionaries)];
+const publishedCopy = [
+  ...collectStrings(cv),
+  ...collectStrings(cvIt),
+  ...collectStrings(dictionaries),
+];
 
 describe("CV consistency", () => {
   it("uses the full name everywhere and the handle only for GitHub", () => {
@@ -92,6 +98,45 @@ describe("positioning copy", () => {
     expect(new Set(normalized).size).toBe(normalized.length);
     expect(all.filter((s) => /\bjava\b/i.test(s))).toEqual(["Java (training)"]);
     expect(all.some((s) => /^c(\+\+)?$/i.test(s))).toBe(false);
+  });
+});
+
+describe("Italian translation", () => {
+  const italian = getContent("it");
+
+  it("translates every role, bullet, project and decision without changing facts", () => {
+    expect(Object.keys(cvIt.experience).sort()).toEqual(cv.experience.map((e) => e.id).sort());
+    expect(Object.keys(cvIt.projects).sort()).toEqual(cv.projects.map((p) => p.id).sort());
+    expect(Object.keys(cvIt.education).sort()).toEqual(cv.education.map((e) => e.id).sort());
+    expect(Object.keys(cvIt.skillTiers).sort()).toEqual(cv.skillTiers.map((t) => t.id).sort());
+    for (const item of cv.experience) {
+      const tr = cvIt.experience[item.id];
+      expect(tr.bullets.length, item.id).toBe(item.bullets.length);
+      expect(Boolean(tr.context), item.id).toBe(Boolean(item.context));
+    }
+    for (const project of cv.projects) {
+      const tr = cvIt.projects[project.id];
+      expect(tr.decisions?.length ?? 0, project.id).toBe(project.decisions?.length ?? 0);
+      expect(Boolean(tr.architecture), project.id).toBe(Boolean(project.architecture));
+    }
+    expect(cvIt.glance.areas.length).toBe(cv.glance.areas.length);
+    expect(cvIt.beyondTheStack.length).toBe(cv.beyondTheStack.length);
+    for (const label of Object.keys(cvIt.skillLabels)) {
+      expect([...cv.skillTiers.flatMap((t) => t.skills), ...cv.alsoOnCv, ...cv.experience.flatMap((e) => e.technologies)]).toContain(label);
+    }
+
+    expect(italian.experience.map(({ company, title, start, end }) => ({ company, title, start, end }))).toEqual(
+      cv.experience.map(({ company, title, start, end }) => ({ company, title, start, end })),
+    );
+    expect(italian.projects.map((p) => [p.name, p.year, p.liveUrl, p.repoUrl])).toEqual(
+      cv.projects.map((p) => [p.name, p.year, p.liveUrl, p.repoUrl]),
+    );
+    expect(italian.person.name).toBe(cv.person.name);
+  });
+
+  it("keeps Italian SEO within limits", () => {
+    expect(italian.seo.title.length).toBeLessThanOrEqual(60);
+    expect(italian.seo.description.length).toBeLessThanOrEqual(155);
   });
 });
 

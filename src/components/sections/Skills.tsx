@@ -1,4 +1,4 @@
-import { alsoOnCv, beyondTheStack, skillTiers } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Skills({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { alsoOnCv, beyondTheStack, skillTiers } = getContent(locale);
 
   return (
     <Section id="skills" labelledBy="skills-heading">

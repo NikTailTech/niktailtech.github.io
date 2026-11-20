@@ -1,4 +1,4 @@
-import { about } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/types";
 
 export function About({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { about } = getContent(locale);
 
   return (
     <Section id="about" labelledBy="about-heading">

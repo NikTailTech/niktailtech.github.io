@@ -17,6 +17,10 @@ export const en: Dictionary = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
   },
+  language: {
+    switchLabel: "Leggi in italiano",
+    switchShort: "IT",
+  },
   theme: {
     light: "Theme: light. Switch theme",
     dark: "Theme: dark. Switch theme",
@@ -75,6 +79,11 @@ export const en: Dictionary = {
     emailMe: "Email me",
     copyEmail: "Copy email",
     copied: "Email address copied",
+  },
+  notFound: {
+    title: "Page not found",
+    body: "This page does not exist. The portfolio is one page.",
+    back: "Back to the portfolio",
   },
   footer: {
     navigate: "Navigation",

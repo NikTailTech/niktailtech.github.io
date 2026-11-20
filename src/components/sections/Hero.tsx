@@ -1,5 +1,5 @@
 import { ArrowDownRight, Download, MapPin } from "lucide-react";
-import { cvDocument, hero, person, socialLinks } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
@@ -8,6 +8,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Hero({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { cvDocument, hero, person, socialLinks } = getContent(locale);
   const facts = [hero.workAuthorization, hero.openTo];
 
   return (

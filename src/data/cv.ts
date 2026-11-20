@@ -52,7 +52,7 @@ export const hero = {
   valueProposition:
     "I design and ship web applications end to end, from Figma to production, with the infrastructure to keep them reliable.",
   workAuthorization: "No visa sponsorship required",
-  openTo: "Open to Full Stack roles in Ticino or remote (EU)",
+  openTo: "Open to Full Stack roles in Switzerland or remote (EU)",
 };
 
 export const glance: { areas: FocusArea[]; also: string } = {
@@ -70,7 +70,7 @@ export const glance: { areas: FocusArea[]; also: string } = {
       description: "Docker, Kubernetes and Linux; CI/CD with GitHub Actions; a Proxmox homelab.",
     },
   ],
-  also: "Also: Web3, 3D modeling, graphic design",
+  also: "Also: Web3, 3D Modeling, Graphic Design",
 };
 
 export const about = {
@@ -80,7 +80,7 @@ export const about = {
     "I'm a Full Stack Developer based in Ticino. I like owning a feature end to end: the layout in Figma, the React or Next.js interface, the API and database behind it, and the deploy that puts it in front of users.",
     "At Franklin Switzerland I took the company's new website from Figma to production, and I maintain its existing PHP site: automations, patches and security fixes. Before that I spent over two years at SL Technology building and maintaining PHP web applications, working directly with clients on their requirements.",
     "I care about how software behaves once it's live, so I run my own projects in Docker on a Proxmox and Kubernetes homelab. That's where I learn the infrastructure side without risking production.",
-    "Outside work I've created an NFT collection with its smart contract, and I do 3D modeling and graphic design.",
+    "Outside work I do graphic design, 3D modeling and 3D printing.",
   ],
 };
 
@@ -287,7 +287,7 @@ export const projects: Project[] = [
 
 export const contact = {
   heading: "Let’s talk",
-  body: "Hiring for a Full Stack or PHP role in Ticino or remote? Email is the fastest way to reach me; LinkedIn works too.",
+  body: "Hiring for a Full Stack or PHP role in Switzerland or remote? Email is the fastest way to reach me; LinkedIn works too.",
   mailtoSubject: "Professional inquiry — portfolio",
   mailtoBody: `Hi Nicholas,
 

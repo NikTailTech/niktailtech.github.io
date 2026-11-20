@@ -1,5 +1,5 @@
 import { ArrowUp } from "lucide-react";
-import { person, socialLinks } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Container } from "@/components/ui/Container";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/types";
@@ -7,6 +7,7 @@ import { getNavigation } from "@/lib/navigation";
 
 export function Footer({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { person, socialLinks } = getContent(locale);
   const navigation = getNavigation(t);
   const year = new Date().getFullYear();
 

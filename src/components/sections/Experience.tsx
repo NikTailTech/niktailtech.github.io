@@ -1,4 +1,4 @@
-import { experience } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { ExperienceCard } from "@/components/experience/ExperienceCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -7,6 +7,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Experience({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { experience } = getContent(locale);
 
   return (
     <Section id="experience" labelledBy="experience-heading">

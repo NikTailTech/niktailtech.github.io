@@ -1,4 +1,4 @@
-import { education, person } from "@/data/cv";
+import { getContent } from "@/data/content";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/types";
 
 export function Education({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const { education, person } = getContent(locale);
 
   return (
     <Section id="education" labelledBy="education-heading">
