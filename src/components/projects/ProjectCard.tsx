@@ -1,134 +1,132 @@
-"use client";
-
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
-import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary } from "@/i18n/types";
+import { withBasePath } from "@/lib/paths";
 import type { Project } from "@/types";
 
-const STACK_PREVIEW = 4;
+const IMAGE_WIDTHS = [800, 1280];
+const IMAGE_SIZES = "(min-width: 1152px) 540px, (min-width: 1024px) 45vw, 100vw";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const reduce = useReducedMotion();
-  const { t } = useLocale();
-  const localized = t.projectsContent[project.id];
+function srcSet(src: string, format: "avif" | "webp") {
+  return IMAGE_WIDTHS.map((w) => `${withBasePath(`${src}-${w}.${format}`)} ${w}w`).join(", ");
+}
 
-  const name = localized?.name ?? project.name;
-  const shortDescription = localized?.shortDescription ?? project.shortDescription;
-  const detailedDescription =
-    localized?.detailedDescription ?? project.detailedDescription;
-  const highlights = localized?.highlights ?? project.highlights;
-  const role = localized?.role ?? project.role;
-  const stackPreview = project.technologies.slice(0, STACK_PREVIEW);
-  const stackExtra = project.technologies.length - stackPreview.length;
+export function ProjectCard({ project, t }: { project: Project; t: Dictionary }) {
+  const headingId = `project-${project.id}`;
+
+  const story = [
+    { label: t.projects.problem, text: project.problem },
+    { label: t.projects.approach, text: project.approach },
+    { label: t.projects.result, text: project.result },
+  ];
 
   return (
-    <motion.article
-      layout
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.2) }}
-      className="group flex flex-col overflow-hidden border border-border bg-bg-elevated"
+    <article
+      aria-labelledby={headingId}
+      className="grid overflow-hidden border border-border bg-bg-elevated lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
     >
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-bg-muted">
-        {project.liveUrl ? (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute inset-0 z-[1] block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-            aria-label={`${t.projects.visitSite}: ${name}`}
-          >
-            <span className="sr-only">
-              {t.projects.visitSite} {name}
-            </span>
-          </a>
-        ) : null}
-        <Image
-          src={project.image}
-          alt={`${name} preview`}
-          fill
-          priority={index === 0}
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, 50vw"
+      <picture className="block border-b border-border bg-bg-muted lg:self-start lg:border-r">
+        <source type="image/avif" srcSet={srcSet(project.image.src, "avif")} sizes={IMAGE_SIZES} />
+        <source type="image/webp" srcSet={srcSet(project.image.src, "webp")} sizes={IMAGE_SIZES} />
+        <img
+          src={withBasePath(`${project.image.src}-800.webp`)}
+          alt={project.image.alt}
+          width={project.image.width}
+          height={project.image.height}
+          loading="lazy"
+          decoding="async"
+          className="block h-auto w-full"
         />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] bg-gradient-to-t from-black/70 via-black/35 to-transparent px-3 pb-3 pt-10">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-white">
-            {role}
-            <span className="mx-2 text-white/50" aria-hidden>
-              ·
-            </span>
-            {project.year}
-          </p>
-          <p className="mt-1.5 text-xs leading-snug text-white/85">
-            {stackPreview.join(" · ")}
-            {stackExtra > 0 ? ` · +${stackExtra}` : ""}
-          </p>
-        </div>
-      </div>
+      </picture>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-[family-name:var(--font-display)] text-xl font-semibold text-fg">
-          {name}
+      <div className="flex flex-col p-6 sm:p-8">
+        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-subtle">
+          {project.role}
+          <span className="mx-2" aria-hidden>
+            ·
+          </span>
+          {project.year}
+        </p>
+        <h3
+          id={headingId}
+          className="mt-2 font-[family-name:var(--font-display)] text-2xl font-semibold text-fg"
+        >
+          {project.name}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-fg-muted">{shortDescription}</p>
-        <p className="mt-3 text-sm leading-relaxed text-fg-subtle">{detailedDescription}</p>
+        <p className="mt-2 text-base leading-relaxed text-fg">{project.outcome}</p>
 
-        {highlights.length > 0 ? (
-          <ul className="mt-4 space-y-1.5 text-sm text-fg-muted">
-            {highlights.map((h) => (
-              <li key={h} className="flex gap-2">
-                <span className="text-accent" aria-hidden>
-                  —
-                </span>
-                <span>{h}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        <dl className="mt-5 space-y-3 text-sm leading-relaxed">
+          {story.map((item) => (
+            <div key={item.label} className="grid gap-1 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
+              <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-ink sm:pt-0.5">
+                {item.label}
+              </dt>
+              <dd className="text-fg-muted">{item.text}</dd>
+            </div>
+          ))}
+        </dl>
 
         {project.architecture ? (
-          <p className="mt-4 border-l border-border pl-3 font-mono text-xs leading-relaxed text-fg-subtle">
+          <p className="mt-5 border-l-2 border-border-strong pl-3 font-mono text-xs leading-relaxed text-fg-muted">
+            <span className="sr-only">{t.projects.architecture}: </span>
             {project.architecture}
           </p>
         ) : null}
 
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
+        {project.decisions && project.decisions.length > 0 ? (
+          <div className="mt-5">
+            <h4 className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-subtle">
+              {t.projects.decisions}
+            </h4>
+            <ul className="mt-2 space-y-1.5 text-sm text-fg-muted">
+              {project.decisions.map((decision) => (
+                <li key={decision} className="flex gap-2">
+                  <span className="text-accent-ink" aria-hidden>
+                    —
+                  </span>
+                  <span>{decision}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        <ul className="mt-5 flex flex-wrap gap-2" aria-label={t.projects.stack}>
+          {project.stack.map((tech) => (
             <li key={tech}>
               <Badge>{tech}</Badge>
             </li>
           ))}
         </ul>
 
-        <div className="mt-auto flex flex-wrap gap-3 pt-6">
-          {project.githubUrl ? (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-fg hover:text-accent"
-            >
-              <GitHubIcon className="h-4 w-4" />
-              {t.projects.repository}
-            </a>
-          ) : null}
+        <div className="mt-auto flex flex-wrap gap-5 pt-6">
           {project.liveUrl ? (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-fg hover:text-accent"
+              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent-ink"
             >
               <ExternalLink className="h-4 w-4" aria-hidden />
               {t.projects.visitSite}
+              <span className="sr-only">: {project.name}</span>
+            </a>
+          ) : null}
+          {project.repoUrl ? (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent-ink"
+            >
+              <GitHubIcon className="h-4 w-4" />
+              {t.projects.repository}
+              <span className="sr-only">: {project.name}</span>
             </a>
           ) : null}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

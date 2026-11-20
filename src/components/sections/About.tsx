@@ -1,12 +1,12 @@
-"use client";
-
-import { profile } from "@/data/profile";
+import { getContent } from "@/data/content";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function About() {
-  const { t } = useLocale();
+export function About({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const { about } = getContent(locale);
 
   return (
     <Section id="about" labelledBy="about-heading">
@@ -14,27 +14,13 @@ export function About() {
         <SectionHeading
           id="about-heading"
           eyebrow={t.about.eyebrow}
-          title={t.about.title}
-          description={t.about.intro}
+          title={about.title}
+          description={about.subtitle}
         />
         <div className="prose-portfolio text-base leading-relaxed text-fg-muted sm:text-lg">
-          {t.profile.about.map((paragraph, index) => (
-            <p
-              key={paragraph.slice(0, 32)}
-              className={
-                index === t.profile.about.length - 1
-                  ? "border-l-2 border-accent pl-4 text-fg"
-                  : undefined
-              }
-            >
-              {paragraph}
-            </p>
+          {about.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
-          {profile.location ? (
-            <p className="mt-6 font-mono text-sm text-fg-subtle">
-              {t.about.basedIn} {profile.location}
-            </p>
-          ) : null}
         </div>
       </div>
     </Section>

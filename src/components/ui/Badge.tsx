@@ -14,7 +14,7 @@ export function Badge({
       className={cn(
         "inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-[11px] uppercase tracking-wider",
         tone === "neutral" && "border-border text-fg-subtle",
-        tone === "accent" && "border-accent/40 bg-accent-soft text-accent",
+        tone === "accent" && "border-accent/40 bg-accent-soft text-accent-ink",
         tone === "warn" && "border-warning/40 text-warning",
         className,
       )}

@@ -7,10 +7,12 @@
   --bg-muted: #e8eaee;
   --fg: #0c0e12;
   --fg-muted: #4b5568;
-  --fg-subtle: #6b7280;
+  --fg-subtle: #5b6372;
   --border: #d1d5db;
   --border-strong: #9ca3af;
   --accent: #e85d04;
+  /* Orange for small text; --accent alone is below 4.5:1 on the light background */
+  --accent-ink: #a3380a;
   --accent-fg: #0c0e12;
   --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
   --ring: #e85d04;
@@ -30,10 +32,11 @@
   --bg-muted: #1a1d24;
   --fg: #f2f4f7;
   --fg-muted: #a0a8b8;
-  --fg-subtle: #7a8499;
+  --fg-subtle: #828ca1;
   --border: #2a3140;
   --border-strong: #3d4659;
   --accent: #ff6b1a;
+  --accent-ink: #ff6b1a;
   --accent-fg: #0a0b0d;
   --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
   --ring: #ff6b1a;
@@ -53,6 +56,7 @@
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-fg: var(--accent-fg);
   --color-accent-soft: var(--accent-soft);
   --color-ring: var(--ring);
@@ -105,11 +109,12 @@ body {
   padding: 0.75rem 1rem;
   background: var(--accent);
   color: var(--accent-fg);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .skip-link:focus {
   top: 1rem;
+  outline-color: var(--fg);
 }
 
 .hero-grid {

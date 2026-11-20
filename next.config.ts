@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    // Two root layouts (English at /, Italian at /it/) need a global 404 page.
+    globalNotFound: true,
+  },
   turbopack: {
     rules: {
       "*.css": {

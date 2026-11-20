@@ -10,7 +10,7 @@ const variants: Record<Variant, string> = {
   secondary:
     "bg-transparent text-fg border border-border-strong hover:border-fg hover:bg-bg-muted",
   ghost: "bg-transparent text-fg-muted hover:text-fg hover:bg-bg-muted border border-transparent",
-  link: "bg-transparent text-accent underline-offset-4 hover:underline px-0 py-0 border-0",
+  link: "bg-transparent text-accent-ink underline-offset-4 hover:underline px-0 py-0 border-0",
 };
 
 type Common = {

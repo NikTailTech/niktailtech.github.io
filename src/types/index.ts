@@ -1,30 +1,67 @@
 export type ThemeMode = "light" | "dark" | "system";
 
-export type ExperienceLevel = "exploring" | "working" | "proficient" | "advanced";
-
-export type ProjectCategory =
-  | "full-stack"
-  | "frontend"
-  | "backend"
-  | "infrastructure"
-  | "blockchain"
-  | "creative";
-
-export type ProjectStatus = "concept" | "in-progress" | "completed" | "archived" | "placeholder";
-
 export interface NavItem {
   label: string;
   href: string;
 }
 
+export interface Person {
+  name: string;
+  givenName: string;
+  familyName: string;
+  jobTitle: string;
+  /** GitHub handle only; never used as a display name */
+  githubUsername: string;
+  email: string;
+  location: {
+    region: string;
+    country: string;
+    countryCode: string;
+  };
+  languages: LanguageItem[];
+}
+
 export interface SocialLink {
-  id: string;
+  id: "github" | "linkedin";
   label: string;
   href: string;
-  /** Set to false until a real URL is supplied */
-  enabled: boolean;
-  /** TODO marker shown in content docs when missing */
-  todo?: string;
+}
+
+export interface CvDocument {
+  path: string;
+  available: boolean;
+}
+
+export interface ExperienceItem {
+  id: string;
+  /** Exactly as written on the CV */
+  company: string;
+  title: string;
+  /** ISO year-month, e.g. "2025-06" */
+  start: string;
+  /** ISO year-month, or null for the current role */
+  end: string | null;
+  location: string;
+  context?: string;
+  bullets: string[];
+  technologies: string[];
+  links?: { label: string; href: string }[];
+}
+
+export interface EducationItem {
+  id: string;
+  qualification: string;
+  institution: string;
+  location: string;
+  startYear: number;
+  endYear: number;
+}
+
+export interface LanguageItem {
+  name: string;
+  /** ISO 639-1 code */
+  code: string;
+  level: string;
 }
 
 export interface FocusArea {
@@ -32,129 +69,76 @@ export interface FocusArea {
   description: string;
 }
 
-export interface Profile {
-  name: string;
-  firstName: string;
-  surname: string;
-  title: string;
-  shortBio: string;
-  personalStatement: string;
-  about: string[];
-  focusAreas: FocusArea[];
-  /** Daily / also buckets, each split into domain rows (frontend, backend, …) */
-  stackGroups: {
-    id: string;
-    domains: { id: string; items: string[] }[];
-  }[];
-  location?: string;
-  availability?: string;
-  githubUsername: string;
-  /** TODO: replace with real email */
-  email: string;
-  emailConfigured: boolean;
-  /** Path under /public for CV PDF */
-  cvPath: string;
-  cvAvailable: boolean;
-  seo: {
-    siteUrl: string;
-    title: string;
-    description: string;
-    keywords: string[];
-    ogImage: string;
-    locale: string;
-  };
-}
-
-export interface ExperienceItem {
-  id: string;
-  company: string;
-  title: string;
-  period: string;
-  location?: string;
-  summary: string;
-  responsibilities: string[];
-  technologies: string[];
-  achievements?: string[];
-  links?: { label: string; href: string }[];
-  /** true when this entry is a placeholder awaiting real content */
-  isPlaceholder?: boolean;
-}
-
-export interface SkillItem {
-  name: string;
-  level?: ExperienceLevel;
-  note?: string;
-}
-
-export interface SkillDomain {
-  id: string;
-  skills: SkillItem[];
-}
-
-export interface SkillCategory {
+export interface SkillTier {
   id: string;
   title: string;
   description: string;
-  domains: SkillDomain[];
+  skills: string[];
+}
+
+export interface ProjectImage {
+  /** Path without suffix; files are `${src}-{800,1280}.{avif,webp}` at 16:10 */
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
 }
 
 export interface Project {
   id: string;
   name: string;
-  shortDescription: string;
-  detailedDescription: string;
-  category: ProjectCategory;
-  /** Role on the project, shown on the card instead of a status badge */
+  outcome: string;
   role: string;
-  /** Year or year range, e.g. "2025" or "2024–2025" */
   year: string;
-  technologies: string[];
-  image: string;
-  images?: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  status: ProjectStatus;
-  highlights: string[];
+  stack: string[];
+  problem: string;
+  approach: string;
+  result: string;
+  decisions?: string[];
   architecture?: string;
-  isPlaceholder?: boolean;
+  image: ProjectImage;
+  liveUrl?: string;
+  repoUrl?: string;
 }
 
-export interface Repository {
-  id: string;
-  name: string;
-  description: string;
-  tags: string[];
-  url: string;
-  language?: string;
-  thumbnail?: string;
-  isPlaceholder?: boolean;
+/**
+ * Translated prose for a non-English page. Facts (names, companies, dates, URLs,
+ * stack) are never translated and always come from src/data/cv.ts.
+ */
+export interface CvTranslation {
+  country: string;
+  languages: Record<string, { name: string; level: string }>;
+  hero: { stack: string; valueProposition: string; workAuthorization: string; openTo: string };
+  glance: { areas: FocusArea[]; also: string };
+  about: { title: string; subtitle: string; paragraphs: string[] };
+  skillTiers: Record<string, { title: string; description: string }>;
+  /** Skill names that contain prose, e.g. "Java (training)" */
+  skillLabels: Record<string, string>;
+  beyondTheStack: FocusArea[];
+  experience: Record<string, { location: string; context?: string; bullets: string[] }>;
+  education: Record<string, { qualification: string; location: string }>;
+  projects: Record<
+    string,
+    {
+      outcome: string;
+      role: string;
+      problem: string;
+      approach: string;
+      result: string;
+      decisions?: string[];
+      architecture?: string;
+      imageAlt: string;
+    }
+  >;
+  contact: { heading: string; body: string; mailtoSubject: string; mailtoBody: string };
+  seo: { title: string; description: string; ogImageAlt: string; locale: string };
 }
 
-export interface CreativeWork {
-  id: string;
+export interface Seo {
+  siteUrl: string;
   title: string;
   description: string;
-  image: string;
-  tools?: string[];
-  externalUrl?: string;
-  isPlaceholder?: boolean;
+  keywords: string[];
+  ogImage: { src: string; width: number; height: number; alt: string };
+  locale: string;
 }
-
-export interface CreativeSection {
-  id: string;
-  title: string;
-  eyebrow: string;
-  description: string;
-  bullets: string[];
-  works: CreativeWork[];
-}
-
-export interface ContactConfig {
-  heading: string;
-  body: string;
-  /** mailto subject when email is configured */
-  mailtoSubject: string;
-  /** mailto body template when email is configured */
-  mailtoBody: string;
-}
-

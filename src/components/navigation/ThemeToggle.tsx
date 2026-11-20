@@ -2,16 +2,20 @@
 
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary } from "@/i18n/types";
 import { cn } from "@/lib/utils";
 
-export function ThemeToggle({ className }: { className?: string }) {
-  const { mode, cycle, ready } = useTheme();
-  const { t } = useLocale();
+export function ThemeToggle({
+  labels,
+  className,
+}: {
+  labels: Dictionary["theme"];
+  className?: string;
+}) {
+  const { mode, cycle } = useTheme();
 
   const Icon = mode === "dark" ? Moon : mode === "light" ? Sun : Monitor;
-  const label =
-    mode === "dark" ? t.theme.dark : mode === "light" ? t.theme.light : t.theme.system;
+  const label = mode === "dark" ? labels.dark : mode === "light" ? labels.light : labels.system;
 
   return (
     <button
@@ -22,7 +26,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         className,
       )}
       aria-label={label}
-      title={ready ? label : t.theme.switch}
+      title={label}
     >
       <Icon className="h-4 w-4" aria-hidden />
     </button>

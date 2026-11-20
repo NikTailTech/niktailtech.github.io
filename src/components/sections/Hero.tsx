@@ -1,19 +1,15 @@
-"use client";
-
-import { ArrowDownRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
-import { profile } from "@/data/profile";
-import { enabledSocialLinks, socialLinks } from "@/data/social";
+import { ArrowDownRight, Download, MapPin } from "lucide-react";
+import { getContent } from "@/data/content";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Hero() {
-  const reduce = useReducedMotion();
-  const { t } = useLocale();
-  const linkedIn = socialLinks.find((l) => l.id === "linkedin");
-  const github = enabledSocialLinks.find((l) => l.id === "github");
+export function Hero({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const { cvDocument, hero, person, socialLinks } = getContent(locale);
+  const facts = [hero.workAuthorization, hero.openTo];
 
   return (
     <section
@@ -23,57 +19,78 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
       <div
-        className="pointer-events-none absolute -right-24 top-10 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-3xl"
+        className="pointer-events-none absolute -right-48 -top-14 h-[44rem] w-[44rem] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--accent)_12%,transparent),transparent)]"
         aria-hidden
       />
 
-      <Container className="relative flex min-h-[calc(100svh-var(--nav-height))] items-center py-16 lg:py-20">
+      <Container className="relative py-20 sm:py-28 lg:py-32">
         <div className="max-w-3xl">
-          <motion.h1
+          <h1
             id="hero-heading"
             className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl"
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
           >
-            {profile.name + " " + profile.surname}
-          </motion.h1>
+            {person.name}
+          </h1>
 
-          <motion.p
-            className="mt-3 text-2xl text-fg-muted sm:text-3xl"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-          >
-            {t.profile.title}
-          </motion.p>
+          <p className="mt-4 text-xl text-fg sm:text-2xl">
+            {person.jobTitle}
+            <span className="text-fg-muted"> – {hero.stack}</span>
+          </p>
 
-          <motion.div
-            className="mt-8 flex flex-wrap items-center gap-3"
-            initial={reduce ? false : { opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.16 }}
-          >
-            <Button href="#projects" variant="primary">
-              {t.hero.exploreProjects}
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
+            {hero.valueProposition}
+          </p>
+
+          <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-fg-muted sm:text-sm">
+            <li className="inline-flex items-center gap-1.5 text-fg">
+              <MapPin className="h-4 w-4 text-accent-ink" aria-hidden />
+              {t.hero.basedIn} {person.location.region}, {person.location.country}
+            </li>
+            {facts.map((fact) => (
+              <li key={fact} className="inline-flex w-full items-center gap-3 sm:w-auto">
+                <span className="hidden text-border-strong sm:inline" aria-hidden>
+                  /
+                </span>
+                {fact}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            {cvDocument.available ? (
+              <Button href={cvDocument.path} variant="primary" download>
+                <Download className="h-4 w-4" aria-hidden />
+                {t.hero.downloadCv}
+              </Button>
+            ) : null}
+            <Button href="#projects" variant={cvDocument.available ? "secondary" : "primary"}>
+              {t.hero.viewProjects}
               <ArrowDownRight className="h-4 w-4" aria-hidden />
             </Button>
             <Button href="#contact" variant="secondary">
-              {t.hero.getInTouch}
+              {t.hero.contact}
             </Button>
-            {github ? (
-              <Button href={github.href} variant="ghost" aria-label="GitHub">
-                <GitHubIcon className="h-4 w-4" />
-                GitHub
-              </Button>
-            ) : null}
-            {linkedIn?.enabled ? (
-              <Button href={linkedIn.href} variant="ghost" aria-label="LinkedIn">
-                <LinkedInIcon className="h-4 w-4" />
-                LinkedIn
-              </Button>
-            ) : null}
-          </motion.div>
+          </div>
+
+          <ul className="mt-6 flex flex-wrap gap-5 text-sm">
+            {socialLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-6 items-center gap-2 text-fg-muted underline-offset-4 transition-colors hover:text-fg hover:underline"
+                >
+                  {link.id === "github" ? (
+                    <GitHubIcon className="h-4 w-4" />
+                  ) : (
+                    <LinkedInIcon className="h-4 w-4" />
+                  )}
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

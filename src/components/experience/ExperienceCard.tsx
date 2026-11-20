@@ -1,62 +1,45 @@
-"use client";
-
 import { Badge } from "@/components/ui/Badge";
-import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary, Locale } from "@/i18n/types";
+import { formatPeriod } from "@/lib/utils";
 import type { ExperienceItem } from "@/types";
 
-export function ExperienceCard({ item }: { item: ExperienceItem }) {
-  const { t } = useLocale();
-  const localized = t.experiences[item.id];
-
-  const title = localized?.title ?? item.title;
-  const location = localized?.location ?? item.location;
-  const summary = localized?.summary ?? item.summary;
-  const responsibilities = localized?.responsibilities ?? item.responsibilities;
-
+export function ExperienceCard({
+  item,
+  locale,
+  t,
+}: {
+  item: ExperienceItem;
+  locale: Locale;
+  t: Dictionary;
+}) {
   return (
     <article className="grid gap-6 border-t border-border py-10 first:border-t-0 first:pt-0 md:grid-cols-[11rem_1fr] md:gap-10">
       <div className="md:sticky md:top-24 md:self-start">
         <p className="font-mono text-xs uppercase tracking-[0.16em] text-fg-subtle">
-          {item.period}
+          {formatPeriod(item.start, item.end, locale, t.experience.present)}
         </p>
-        {location ? <p className="mt-2 text-sm text-fg-muted">{location}</p> : null}
-        {item.isPlaceholder ? (
-          <div className="mt-3">
-            <Badge tone="warn">Placeholder</Badge>
-          </div>
-        ) : null}
+        <p className="mt-2 text-sm text-fg-muted">{item.location}</p>
       </div>
 
       <div>
         <h3 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight text-fg">
-          {title}
+          {item.title}
         </h3>
         <p className="mt-1 text-fg-muted">{item.company}</p>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg-muted">{summary}</p>
+        {item.context ? (
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-fg-muted">{item.context}</p>
+        ) : null}
 
         <ul className="mt-5 space-y-2 text-sm text-fg-muted">
-          {responsibilities.map((r, i) => (
-            <li key={`${item.id}-resp-${i}`} className="flex gap-3">
+          {item.bullets.map((bullet) => (
+            <li key={bullet} className="flex gap-3">
               <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden />
-              <span>{r}</span>
+              <span>{bullet}</span>
             </li>
           ))}
         </ul>
 
-        {item.achievements && item.achievements.length > 0 ? (
-          <ul className="mt-4 space-y-2 text-sm text-fg">
-            {item.achievements.map((a, i) => (
-              <li key={`${item.id}-ach-${i}`} className="flex gap-3">
-                <span className="font-mono text-accent" aria-hidden>
-                  /
-                </span>
-                <span>{a}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
-        <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
+        <ul className="mt-6 flex flex-wrap gap-2" aria-label={t.experience.technologies}>
           {item.technologies.map((tech) => (
             <li key={tech}>
               <Badge>{tech}</Badge>
@@ -72,7 +55,7 @@ export function ExperienceCard({ item }: { item: ExperienceItem }) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent underline-offset-4 hover:underline"
+                  className="text-accent-ink underline-offset-4 hover:underline"
                 >
                   {link.label}
                 </a>
