@@ -1,27 +1,88 @@
 import { describe, expect, it } from "vitest";
-import { profile } from "./profile";
-import { projects } from "./projects";
-import { socialLinks } from "./social";
-import { profileSchema, projectSchema, socialLinkSchema } from "@/lib/validate-content";
+import * as cv from "./cv";
+import { dictionaries } from "@/i18n/dictionaries";
+import {
+  collectStrings,
+  experienceSchema,
+  forbiddenCopy,
+  phonePattern,
+  projectSchema,
+} from "@/lib/validate-content";
 
-describe("centralized content", () => {
-  it("validates profile shape", () => {
-    expect(() => profileSchema.parse(profile)).not.toThrow();
+const publishedCopy = [...collectStrings(cv), ...collectStrings(dictionaries)];
+
+describe("CV consistency", () => {
+  it("uses the full name everywhere and the handle only for GitHub", () => {
+    expect(cv.person.name).toBe("Nicholas Codazzi");
+    expect(cv.person.githubUsername).toBe("NikTailTech");
+    expect(cv.seo.title.startsWith("Nicholas Codazzi")).toBe(true);
   });
 
-  it("validates social links", () => {
-    for (const link of socialLinks) {
-      expect(() => socialLinkSchema.parse(link)).not.toThrow();
+  it("matches the CV employers, titles, locations and dates exactly", () => {
+    expect(
+      cv.experience.map(({ company, title, location, start, end }) => ({
+        company,
+        title,
+        location,
+        start,
+        end,
+      })),
+    ).toEqual([
+      {
+        company: "Franklin Switzerland",
+        title: "Full Stack Developer",
+        location: "Sorengo, Switzerland",
+        start: "2025-06",
+        end: null,
+      },
+      {
+        company: "SL Technology s.r.l.",
+        title: "Full Stack Web Developer",
+        location: "Crema, Italy",
+        start: "2023-02",
+        end: "2025-05",
+      },
+      {
+        company: "Zucchetti S.p.A.",
+        title: "Full Stack Developer",
+        location: "Lodi, Italy",
+        start: "2022-10",
+        end: "2023-02",
+      },
+    ]);
+  });
+
+  it("matches the CV education and languages", () => {
+    expect(cv.education).toEqual([
+      {
+        id: "iis-galilei",
+        qualification: "Diploma in Information Technology",
+        institution: "IIS Galileo Galilei",
+        location: "Crema, Italy",
+        startYear: 2017,
+        endYear: 2022,
+      },
+    ]);
+    expect(cv.person.languages.map((l) => `${l.name} ${l.level}`)).toEqual([
+      "Italian Native",
+      "English C1",
+    ]);
+  });
+
+  it("validates experience and project shapes", () => {
+    for (const item of cv.experience) expect(() => experienceSchema.parse(item)).not.toThrow();
+    for (const project of cv.projects) expect(() => projectSchema.parse(project)).not.toThrow();
+  });
+});
+
+describe("published copy", () => {
+  it("contains no placeholder or unfinished copy", () => {
+    for (const text of publishedCopy) {
+      for (const pattern of forbiddenCopy) expect(text).not.toMatch(pattern);
     }
   });
 
-  it("validates projects", () => {
-    for (const project of projects) {
-      expect(() => projectSchema.parse(project)).not.toThrow();
-    }
-  });
-
-  it("keeps GitHub username as NikTailTech", () => {
-    expect(profile.githubUsername).toBe("NikTailTech");
+  it("contains no phone number", () => {
+    for (const text of publishedCopy) expect(text).not.toMatch(phonePattern);
   });
 });

@@ -1,6 +1,6 @@
 "use client";
 
-import { experiences } from "@/data/experience";
+import { experience } from "@/data/cv";
 import { ExperienceCard } from "@/components/experience/ExperienceCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -19,7 +19,7 @@ export function Experience() {
         className="mb-12"
       />
       <div>
-        {experiences.map((item) => (
+        {experience.map((item) => (
           <ExperienceCard key={item.id} item={item} />
         ))}
       </div>

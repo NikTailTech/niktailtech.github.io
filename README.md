@@ -1,15 +1,13 @@
-# Nicholas — Personal Developer Portfolio
+# Nicholas Codazzi — Portfolio
 
-Production-ready personal portfolio for **Nicholas** (`NikTailTech`), Full Stack Developer. Built with Next.js static export for free hosting on GitHub Pages.
+Portfolio of **Nicholas Codazzi**, Full Stack Developer based in Ticino, Switzerland. Live at [niktailtech.github.io](https://niktailtech.github.io) (GitHub handle: `NikTailTech`). Built with Next.js static export for GitHub Pages.
 
 ## Overview
 
-- Professional positioning for recruiters and engineering leaders
-- Experience, skills, featured projects, and static GitHub repository listings
-- Multidisciplinary **Beyond Software** section (Web3, 3D, printing, digital media)
+- Experience, education, languages, skills and project case studies, kept in sync with the CV
 - Light/dark theme with system preference + local persistence
 - SEO metadata, sitemap, robots.txt, and Person structured data
-- Accessible, responsive, and maintainable content via centralized data files
+- All CV-facing content in a single data file, validated by tests
 
 ## Stack
 
@@ -85,18 +83,9 @@ Required permissions: `contents: read`, `pages: write`, `id-token: write`.
 
 ## Content customization
 
-See **[CONTENT.md](./CONTENT.md)** for the full map of data files and asset folders.
+All CV-facing content (name, experience, education, languages, skills, projects, SEO) lives in **`src/data/cv.ts`**, so the site and the CV stay in sync. UI labels live in `src/i18n/dictionaries/`. See **[CONTENT.md](./CONTENT.md)** for details and the rules enforced by `src/data/content.test.ts`.
 
-Quick start:
-
-1. `src/data/profile.ts` — name, bio, email, CV, SEO
-2. `src/data/social.ts` — LinkedIn and other links
-3. `src/data/experience.ts` — employment history
-4. `src/data/projects.ts` / `repositories.ts` — work and repos
-5. `src/data/interests.ts` — Beyond Software galleries
-6. Drop media into `public/images/...` and CV into `public/documents/`
-
-Never invent employers, metrics, NFT marketplace details, or certifications. Keep placeholders labeled until real content is ready.
+Never invent employers, metrics, links or tools, and never publish placeholders.
 
 ## Project structure
 

@@ -1,29 +1,16 @@
 "use client";
 
-import { profile } from "@/data/profile";
-import { enabledSocialLinks } from "@/data/social";
+import { person, socialLinks } from "@/data/cv";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/navigation/ThemeToggle";
 import { MobileNav } from "@/components/navigation/MobileNav";
-
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { getNavigation } from "@/lib/navigation";
 
 export function Header() {
   const { t } = useLocale();
-
-  const navigation = [
-    { label: t.nav.tldr, href: "#tldr" },
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.contact, href: "#contact" },
-  ];
-
-  const headerSocial = enabledSocialLinks.filter(
-    (l) => l.id === "github" || l.id === "linkedin",
-  );
+  const navigation = getNavigation(t);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-md">
@@ -32,9 +19,7 @@ export function Header() {
           href="#top"
           className="group flex items-baseline gap-2 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-fg"
         >
-          <span>
-            {profile.name} {profile.surname}
-          </span>
+          {person.name}
         </a>
 
         <nav aria-label={t.nav.primary} className="hidden items-center gap-1 md:flex">
@@ -50,7 +35,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {headerSocial.map((link) => (
+          {socialLinks.map((link) => (
             <a
               key={link.id}
               href={link.href}
@@ -67,11 +52,9 @@ export function Header() {
             </a>
           ))}
           <ThemeToggle />
-
           <MobileNav items={navigation} />
         </div>
       </Container>
     </header>
   );
 }
-

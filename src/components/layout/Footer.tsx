@@ -1,27 +1,15 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
-import { profile } from "@/data/profile";
-import { enabledSocialLinks } from "@/data/social";
+import { person, socialLinks } from "@/data/cv";
 import { Container } from "@/components/ui/Container";
 import { useLocale } from "@/i18n/LocaleProvider";
+import { getNavigation } from "@/lib/navigation";
 
 export function Footer() {
   const year = new Date().getFullYear();
   const { t } = useLocale();
-
-  const navigation = [
-    { label: t.nav.tldr, href: "#tldr" },
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.contact, href: "#contact" },
-  ];
-
-  const followLinks = enabledSocialLinks.filter(
-    (l) => l.id === "github" || l.id === "linkedin",
-  );
+  const navigation = getNavigation(t);
 
   return (
     <footer className="section-rule border-t border-border bg-bg-elevated py-12">
@@ -34,10 +22,7 @@ export function Footer() {
             <ul className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
               {navigation.map((item) => (
                 <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="text-fg-muted transition-colors hover:text-fg"
-                  >
+                  <a href={item.href} className="text-fg-muted transition-colors hover:text-fg">
                     {item.label}
                   </a>
                 </li>
@@ -50,7 +35,7 @@ export function Footer() {
               {t.footer.followMe}
             </p>
             <ul className="flex flex-col gap-3 text-sm">
-              {followLinks.map((link) => (
+              {socialLinks.map((link) => (
                 <li key={link.id}>
                   <a
                     href={link.href}
@@ -68,7 +53,7 @@ export function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
           <p className="font-mono text-xs text-fg-subtle">
-            © {year} {profile.name}. {t.footer.rights}
+            © {year} {person.name}. {t.footer.rights}
           </p>
           <button
             type="button"

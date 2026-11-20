@@ -1,7 +1,6 @@
 "use client";
 
-import { profile } from "@/data/profile";
-import { Badge } from "@/components/ui/Badge";
+import { focusAreas } from "@/data/cv";
 import { Section } from "@/components/ui/Container";
 import { useLocale } from "@/i18n/LocaleProvider";
 
@@ -9,21 +8,19 @@ export function Tldr() {
   const { t } = useLocale();
 
   return (
-    <Section id="tldr" labelledBy="tldr-heading">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <p
-            id="tldr-heading"
-            className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent"
-          >
-            {t.tldr.eyebrow}
-          </p>
-          <p className="mt-2 max-w-xl text-base text-fg sm:text-lg">{t.tldr.lead}</p>
-        </div>
+    <Section id="glance" labelledBy="glance-heading">
+      <div>
+        <h2
+          id="glance-heading"
+          className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent"
+        >
+          {t.glance.eyebrow}
+        </h2>
+        <p className="mt-2 max-w-xl text-base text-fg sm:text-lg">{t.glance.lead}</p>
       </div>
 
       <ul className="mt-8 grid gap-x-10 gap-y-5 sm:grid-cols-2">
-        {t.profile.focusAreas.map((area) => (
+        {focusAreas.map((area) => (
           <li key={area.title} className="flex gap-3 border-t border-border/80 pt-4">
             <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" aria-hidden />
             <div>
@@ -33,38 +30,6 @@ export function Tldr() {
           </li>
         ))}
       </ul>
-
-      <div className="mt-10 border-t border-border pt-6">
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-fg-subtle">
-          {t.tldr.stackSignal}
-        </p>
-
-        <div className="mt-5 grid gap-10 md:grid-cols-2">
-          {profile.stackGroups.map((group) => (
-            <div key={group.id} className="space-y-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-fg">
-                {t.tldr.stackGroups[group.id] ?? group.id}
-              </p>
-              {group.domains.map((domain) => (
-                <div key={domain.id}>
-                  <p className="text-xs font-medium text-fg-muted">
-                    {t.tldr.stackDomains[domain.id] ?? domain.id}
-                  </p>
-                  <ul className="mt-2 flex flex-wrap gap-1.5">
-                    {domain.items.map((item) => (
-                      <li key={item}>
-                        <Badge tone={group.id === "daily" ? "accent" : "neutral"}>
-                          {item}
-                        </Badge>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
     </Section>
   );
 }

@@ -1,10 +1,10 @@
 import type { MetadataRoute } from "next";
-import { profile } from "@/data/profile";
+import { seo } from "@/data/cv";
 
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = profile.seo.siteUrl.replace(/\/$/, "");
+  const base = seo.siteUrl.replace(/\/$/, "");
   return {
     rules: {
       userAgent: "*",

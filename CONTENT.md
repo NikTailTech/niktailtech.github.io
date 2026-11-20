@@ -1,68 +1,36 @@
-# Content customization guide
+# Content guide
 
-All editable content lives in `src/data/`. Replace placeholders before presenting this site as a finished portfolio. Search the repo for `TODO` to find unfinished slots.
+Everything that also appears on the CV lives in one file: **`src/data/cv.ts`**. Edit the CV and this file together so they never drift apart.
 
-## Identity & SEO — `src/data/profile.ts`
+`src/data/content.test.ts` fails the build if:
 
-| Field | Action |
+- the name, employers, titles, locations or dates differ from the CV,
+- any published string contains placeholder copy (`TODO`, `[X]`, "placeholder", "coming soon", …),
+- any published string looks like a phone number.
+
+## What lives where
+
+| Content | Location |
 | --- | --- |
-| `email` / `emailConfigured` | Set your real email and flip `emailConfigured` to `true` |
-| `cvPath` / `cvAvailable` | Add PDF to `public/documents/nicholas-cv.pdf`, then set `cvAvailable: true` |
-| `location` | Optional public location string |
-| `availability` | Update when open/closed to opportunities |
-| `about` | Edit biography paragraphs |
-| `focusAreas` | Hero “Focus” list: `{ title, description }` entries |
-| `stackSignal` | Hero “Stack signal” inline tech list |
-| `seo.siteUrl` | Set live URL (GitHub Pages or custom domain) |
-| `seo.*` | Titles, description, keywords, OG image |
+| Name, job title, email, location, languages | `person` in `src/data/cv.ts` |
+| GitHub / LinkedIn | `socialLinks` |
+| CV download | `cvDocument` (PDF goes in `public/documents/`) |
+| Experience, education | `experience`, `education` |
+| Skills | `skillTiers` |
+| Projects | `projects` (screenshots in `public/images/projects/`) |
+| Title, description, OG image | `seo` |
+| UI labels (buttons, headings, nav) | `src/i18n/dictionaries/` |
 
-## Social — `src/data/social.ts`
+## Rules
 
-- GitHub is enabled for `NikTailTech`
-- LinkedIn: replace `href` and set `enabled: true`
+- Never invent employers, dates, metrics, links or tools. Leave a `// TODO(user):` comment in `cv.ts` instead; comments are never rendered.
+- No phone number or street address anywhere. City/region level only ("Ticino, Switzerland").
+- `githubUsername` is only for GitHub links; the display name is always `person.name`.
 
-## Experience — `src/data/experience.ts`
+## CV download
 
-Replace placeholder objects with real roles. Fields: `company`, `title`, `period`, `location`, `summary`, `responsibilities`, `technologies`, `achievements`, `links`. Set `isPlaceholder: false` (or remove the flag).
-
-## Skills — `src/data/skills.ts`
-
-Add/remove skills. Optional `level`: `exploring` | `working` | `proficient` | `advanced`. Do not invent expertise levels.
-
-## Projects — `src/data/projects.ts`
-
-Replace placeholders. Drop images into `public/images/projects/` and reference them as `/images/projects/your-file.webp`.
-
-## Repositories — `src/data/repositories.ts`
-
-List real public repos under `NikTailTech`. No runtime GitHub API — keep this file in sync manually.
-
-## Beyond Software — `src/data/interests.ts`
-
-Four blocks: blockchain, modeling, printing, digital. Replace artwork under:
-
-- `public/images/nft/`
-- `public/images/3d/`
-- `public/images/prints/`
-- `public/images/design/`
-
-Do not invent NFT collection names, chains, standards, or marketplace links.
-
-## Contact copy — `src/data/contact.ts`
-
-Heading, body, and mailto subject line.
-
-## Images
-
-Prefer WebP/AVIF for photos; SVG placeholders ship by default. Keep meaningful `alt` text in components when swapping assets.
+The CV PDF must not contain a phone number or street address. Export a web copy to `public/documents/nicholas-codazzi-cv.pdf`, then set `cvDocument.available` to `true`.
 
 ## GitHub Pages base path
 
-This portfolio is a **user** site (`https://niktailtech.github.io`). Leave `NEXT_PUBLIC_BASE_PATH` / Actions `BASE_PATH` empty.
-
-In **Settings → Pages**, set Source to **GitHub Actions**. A branch source makes GitHub serve the README via Jekyll.
-
-For a **project** site (`username.github.io/repo-name`) only:
-
-1. Locally: copy `.env.example` → `.env.local` and set `NEXT_PUBLIC_BASE_PATH=/repo-name`
-2. GitHub: repository **Settings → Secrets and variables → Actions → Variables** → create `BASE_PATH` = `/repo-name`
+This is a **user** site (`https://niktailtech.github.io`), so `NEXT_PUBLIC_BASE_PATH` / the Actions `BASE_PATH` variable stay empty. In **Settings → Pages**, Source must be **GitHub Actions**.

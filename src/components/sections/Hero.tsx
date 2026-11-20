@@ -2,8 +2,7 @@
 
 import { ArrowDownRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { profile } from "@/data/profile";
-import { enabledSocialLinks, socialLinks } from "@/data/social";
+import { person, socialLinks } from "@/data/cv";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
@@ -12,8 +11,6 @@ import { useLocale } from "@/i18n/LocaleProvider";
 export function Hero() {
   const reduce = useReducedMotion();
   const { t } = useLocale();
-  const linkedIn = socialLinks.find((l) => l.id === "linkedin");
-  const github = enabledSocialLinks.find((l) => l.id === "github");
 
   return (
     <section
@@ -36,7 +33,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            {profile.name + " " + profile.surname}
+            {person.name}
           </motion.h1>
 
           <motion.p
@@ -45,7 +42,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
           >
-            {t.profile.title}
+            {person.jobTitle}
           </motion.p>
 
           <motion.div
@@ -55,24 +52,22 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.16 }}
           >
             <Button href="#projects" variant="primary">
-              {t.hero.exploreProjects}
+              {t.hero.viewProjects}
               <ArrowDownRight className="h-4 w-4" aria-hidden />
             </Button>
             <Button href="#contact" variant="secondary">
-              {t.hero.getInTouch}
+              {t.hero.contact}
             </Button>
-            {github ? (
-              <Button href={github.href} variant="ghost" aria-label="GitHub">
-                <GitHubIcon className="h-4 w-4" />
-                GitHub
+            {socialLinks.map((link) => (
+              <Button key={link.id} href={link.href} variant="ghost">
+                {link.id === "github" ? (
+                  <GitHubIcon className="h-4 w-4" />
+                ) : (
+                  <LinkedInIcon className="h-4 w-4" />
+                )}
+                {link.label}
               </Button>
-            ) : null}
-            {linkedIn?.enabled ? (
-              <Button href={linkedIn.href} variant="ghost" aria-label="LinkedIn">
-                <LinkedInIcon className="h-4 w-4" />
-                LinkedIn
-              </Button>
-            ) : null}
+            ))}
           </motion.div>
         </div>
       </Container>

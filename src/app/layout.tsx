@@ -6,11 +6,9 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { ThemeScript } from "@/components/layout/ThemeScript";
-import { profile } from "@/data/profile";
+import { person, seo, socialLinks } from "@/data/cv";
 import { LocaleProvider } from "@/i18n/LocaleProvider";
 import "./globals.css";
-
-
 
 const display = Syne({
   variable: "--font-display",
@@ -33,42 +31,44 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const siteUrl = profile.seo.siteUrl.replace(/\/$/, "");
+const siteUrl = seo.siteUrl.replace(/\/$/, "");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: profile.seo.title,
-    template: `%s · ${profile.name}`,
+    default: seo.title,
+    template: `%s · ${person.name}`,
   },
-  description: profile.seo.description,
-  keywords: profile.seo.keywords,
-  authors: [{ name: profile.name, url: `https://github.com/${profile.githubUsername}` }],
-  creator: profile.name,
+  description: seo.description,
+  keywords: seo.keywords,
+  authors: [{ name: person.name, url: siteUrl }],
+  creator: person.name,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    type: "website",
-    locale: profile.seo.locale,
+    type: "profile",
+    locale: seo.locale,
     url: siteUrl,
-    title: profile.seo.title,
-    description: profile.seo.description,
-    siteName: profile.name,
+    title: seo.title,
+    description: seo.description,
+    siteName: person.name,
+    firstName: person.givenName,
+    lastName: person.familyName,
     images: [
       {
-        url: profile.seo.ogImage,
-        width: 1200,
-        height: 630,
-        alt: `${profile.name} — ${profile.title}`,
+        url: seo.ogImage.src,
+        width: seo.ogImage.width,
+        height: seo.ogImage.height,
+        alt: seo.ogImage.alt,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: profile.seo.title,
-    description: profile.seo.description,
-    images: [profile.seo.ogImage],
+    title: seo.title,
+    description: seo.description,
+    images: [{ url: seo.ogImage.src, alt: seo.ogImage.alt }],
   },
   robots: {
     index: true,
@@ -91,11 +91,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.title,
+    name: person.name,
+    jobTitle: person.jobTitle,
     url: siteUrl,
-    sameAs: [`https://github.com/${profile.githubUsername}`],
-    description: profile.seo.description,
+    sameAs: socialLinks.map((link) => link.href),
+    description: seo.description,
   };
 
   return (
