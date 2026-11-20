@@ -58,9 +58,16 @@ export const it: Dictionary = {
   projects: {
     eyebrow: "Lavori",
     title: "Progetti in evidenza",
-    description: "Lavori selezionati tra prodotto, strumenti self-hosted e progetti per clienti.",
+    description:
+      "Lavoro per clienti e strumenti self-hosted: il problema, come l’ho affrontato e cosa è stato rilasciato.",
     visitSite: "Visita il sito",
     repository: "Repository",
+    problem: "Problema",
+    approach: "Approccio",
+    result: "Risultato",
+    architecture: "Architettura",
+    decisions: "Scelte tecniche",
+    stack: "Stack",
   },
   contact: {
     eyebrow: "Contatti",

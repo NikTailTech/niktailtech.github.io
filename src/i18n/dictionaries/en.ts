@@ -59,9 +59,15 @@ export const en: Dictionary = {
     eyebrow: "Work",
     title: "Featured Projects",
     description:
-      "Selected work across product engineering, self-hosted tools, and client delivery.",
+      "Client work and self-hosted tools: the problem, how I approached it, and what shipped.",
     visitSite: "Visit site",
     repository: "Repository",
+    problem: "Problem",
+    approach: "Approach",
+    result: "Result",
+    architecture: "Architecture",
+    decisions: "Key technical decisions",
+    stack: "Stack",
   },
   contact: {
     eyebrow: "Contact",

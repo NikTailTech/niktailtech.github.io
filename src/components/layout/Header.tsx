@@ -41,7 +41,7 @@ export function Header() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-fg-muted transition-colors hover:border-border-strong hover:text-fg"
+              className="hidden h-10 w-10 items-center justify-center rounded-sm border border-border text-fg-muted transition-colors hover:border-border-strong hover:text-fg sm:inline-flex"
               aria-label={`${link.label} profile`}
             >
               {link.id === "github" ? (

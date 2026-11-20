@@ -18,7 +18,7 @@ export function Projects() {
         description={t.projects.description}
         className="mb-8"
       />
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-6">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

@@ -23,7 +23,7 @@ export const projectSchema = z.object({
   role: nonEmpty,
   year: z.string().regex(/^\d{4}(–\d{4})?$/),
   stack: z.array(nonEmpty).min(1),
-  problem: nonEmpty.optional(),
+  problem: nonEmpty,
   approach: nonEmpty,
   result: nonEmpty,
   decisions: z.array(nonEmpty).optional(),

@@ -62,6 +62,12 @@ export type Dictionary = {
     description: string;
     visitSite: string;
     repository: string;
+    problem: string;
+    approach: string;
+    result: string;
+    architecture: string;
+    decisions: string;
+    stack: string;
   };
   contact: {
     eyebrow: string;

@@ -90,7 +90,7 @@ export interface Project {
   role: string;
   year: string;
   stack: string[];
-  problem?: string;
+  problem: string;
   approach: string;
   result: string;
   decisions?: string[];

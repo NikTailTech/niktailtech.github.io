@@ -206,20 +206,22 @@ export const projects: Project[] = [
   {
     id: "arischiogatti",
     name: "Arischiogatti",
-    outcome:
-      "Website for the Arischiogatti di Crema association — shelter, care, and adoption support for cats in need.",
-    role: "Full Stack Developer",
-    // TODO(user): confirm the project year.
+    outcome: "Public website for a cat-rescue association in Crema, designed and built end to end and donated.",
+    role: "Design and full stack development",
+    // TODO(user): confirm the project year, and how Next.js reads from Drupal (JSON:API or GraphQL; static or server-rendered) and where it is hosted.
     year: "2025",
-    stack: ["Next.js", "React", "TypeScript", "Drupal", "PHP", "Figma"],
+    stack: ["Next.js", "React", "TypeScript", "Drupal (headless)", "PHP", "Figma"],
+    problem:
+      "The Arischiogatti di Crema association shelters cats in need and finds them homes. It needed a public website with content it could update itself.",
     approach:
-      "End-to-end delivery of the association’s public website: full visual design, Drupal CMS integration for content management, and production deployment.",
-    result: "Donated to the association to support their work in Crema and the surrounding area.",
+      "Designed the site in Figma, built the front end in Next.js and TypeScript, and set up Drupal as a headless CMS that serves the content.",
+    result: "Live in production at arischiogatti.it, donated to the association.",
+    architecture: "Next.js front end (React, TypeScript) → content from headless Drupal (PHP)",
     image: {
       src: "/images/projects/arischiogatti-cover.png",
       width: 1902,
       height: 944,
-      alt: "Arischiogatti home page",
+      alt: "Arischiogatti home page: a tabby cat photo behind the headline “Ogni zampa merita una seconda occasione” and a button to meet the cats",
     },
     liveUrl: "https://arischiogatti.it/",
   },
@@ -227,36 +229,57 @@ export const projects: Project[] = [
     id: "crypto-tracker",
     name: "Crypto Tracker",
     outcome:
-      "Self-hosted app to record crypto transactions, calculate cost basis, and follow portfolio performance.",
+      "Self-hosted portfolio tracker that turns raw crypto transactions into cost basis, profit and loss, and a yearly tax report.",
     role: "Personal project",
     year: "2026",
-    stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Zod", "Recharts"],
+    // TODO(user): add a short demo GIF or video if available.
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Zod", "decimal.js", "Recharts", "Vitest"],
+    problem:
+      "Working out cost basis by hand breaks down once swaps, transfers, staking rewards and fees paid in other assets pile up, and the answer depends on the accounting method.",
     approach:
-      "Buys, sells, swaps, transfers, and staking, with FIFO, LIFO, and average-cost strategies. Prices can refresh from Kraken, and a yearly tax report exports to CSV or JSON.",
-    result: "Portfolio data stays in your own PostgreSQL database.",
+      "A cost-basis engine replays transactions in date order and builds lots under FIFO, LIFO or average cost, fed by Kraken CSV imports and Kraken's public price ticker.",
+    result:
+      "Side-by-side strategy comparison, realized and unrealized profit and loss, and a yearly tax report exported to CSV or JSON. The engine, CSV import and tax report have Vitest tests.",
+    decisions: [
+      "Cost-basis engine with FIFO, LIFO and average cost, fees included in the basis",
+      "decimal.js for every amount, so money math never uses floating point",
+      "PostgreSQL as the source of truth; JSON backups are only an interchange format",
+      "Prices stored in CHF, EUR and USD; portfolio valued in CHF",
+    ],
     image: {
       src: "/images/projects/crypto-tracker.png",
       width: 1904,
       height: 957,
-      alt: "Crypto Tracker dashboard",
+      alt: "Crypto Tracker dashboard showing total equity, profit, ROI, realized and unrealized profit and loss, and holdings in CHF",
     },
     repoUrl: "https://github.com/NikTailTech/crypto-tracker",
   },
   {
     id: "finance-tracker",
     name: "Finance Tracker",
-    outcome: "Self-hosted personal finance app for accounts, envelopes, and EUR / CHF balances.",
+    outcome:
+      "Self-hosted finance app for an Italian–Swiss setup, with EUR and CHF accounts and balances derived from a ledger.",
     role: "Personal project",
     year: "2026",
-    stack: ["Next.js", "React", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS", "Docker", "Zod"],
+    // TODO(user): add a short demo GIF or video if available.
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "Zod", "decimal.js", "Docker", "Kubernetes"],
+    problem:
+      "With EUR and CHF accounts split into budget envelopes, money moves between accounts, envelopes and currencies every month. Counting those moves as income or spending distorts the numbers.",
     approach:
-      "Checking accounts in EUR and CHF, each split into Needs, Play, Investment, and Savings. Balances are computed from the ledger.",
-    result: "Transfers or currency conversions stay separate from income and expenses.",
+      "A ledger model where every balance is computed from transactions and transfers, never stored. Transfers and EUR–CHF conversions are their own entity, separate from income and expenses.",
+    result:
+      "A dashboard with FX-aware net worth and balances per account and envelope, deployable with Docker Compose or on Kubernetes with health checks and persistent PostgreSQL.",
+    decisions: [
+      "Ledger-based balances: no stored totals that can drift out of sync",
+      "Amounts stored as Decimal(19,4) and handled with decimal.js",
+      "EUR–CHF conversions use a configurable rate and never count as income or expense",
+      "Standalone Next.js build with Docker Compose and Kubernetes manifests, probed on /api/health",
+    ],
     image: {
       src: "/images/projects/finance-tracker.png",
       width: 1905,
       height: 957,
-      alt: "Finance Tracker dashboard",
+      alt: "Finance Tracker dashboard showing EUR and CHF account totals, each account split into Needs, Play, Investment and Savings",
     },
     repoUrl: "https://github.com/NikTailTech/finance-tracker",
   },
