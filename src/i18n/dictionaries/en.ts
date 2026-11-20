@@ -72,7 +72,9 @@ export const en: Dictionary = {
   contact: {
     eyebrow: "Contact",
     reachOut: "Reach out",
-    emailMe: "Contact me",
+    emailMe: "Email me",
+    copyEmail: "Copy email",
+    copied: "Email address copied",
   },
   footer: {
     navigate: "Navigation",

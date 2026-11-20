@@ -77,6 +77,7 @@ export interface SkillTier {
 }
 
 export interface ProjectImage {
+  /** Path without suffix; files are `${src}-{800,1280}.{avif,webp}` at 16:10 */
   src: string;
   width: number;
   height: number;

@@ -73,6 +73,8 @@ export type Dictionary = {
     eyebrow: string;
     reachOut: string;
     emailMe: string;
+    copyEmail: string;
+    copied: string;
   };
   footer: {
     navigate: string;

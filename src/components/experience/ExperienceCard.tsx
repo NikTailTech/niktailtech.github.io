@@ -1,13 +1,17 @@
-"use client";
-
 import { Badge } from "@/components/ui/Badge";
-import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary, Locale } from "@/i18n/types";
 import { formatPeriod } from "@/lib/utils";
 import type { ExperienceItem } from "@/types";
 
-export function ExperienceCard({ item }: { item: ExperienceItem }) {
-  const { t, locale } = useLocale();
-
+export function ExperienceCard({
+  item,
+  locale,
+  t,
+}: {
+  item: ExperienceItem;
+  locale: Locale;
+  t: Dictionary;
+}) {
   return (
     <article className="grid gap-6 border-t border-border py-10 first:border-t-0 first:pt-0 md:grid-cols-[11rem_1fr] md:gap-10">
       <div className="md:sticky md:top-24 md:self-start">
@@ -51,7 +55,7 @@ export function ExperienceCard({ item }: { item: ExperienceItem }) {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent underline-offset-4 hover:underline"
+                  className="text-accent-ink underline-offset-4 hover:underline"
                 >
                   {link.label}
                 </a>

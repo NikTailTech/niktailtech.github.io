@@ -1,13 +1,12 @@
-"use client";
-
 import { projects } from "@/data/cv";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Projects() {
-  const { t } = useLocale();
+export function Projects({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
 
   return (
     <Section id="projects" labelledBy="projects-heading">
@@ -19,8 +18,8 @@ export function Projects() {
         className="mb-8"
       />
       <div className="grid gap-6">
-        {projects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} t={t} />
         ))}
       </div>
     </Section>

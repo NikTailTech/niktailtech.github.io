@@ -1,16 +1,18 @@
-"use client";
-
-import Image from "next/image";
 import { ExternalLink } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/Badge";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
-import { useLocale } from "@/i18n/LocaleProvider";
+import type { Dictionary } from "@/i18n/types";
+import { withBasePath } from "@/lib/paths";
 import type { Project } from "@/types";
 
-export function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const reduce = useReducedMotion();
-  const { t } = useLocale();
+const IMAGE_WIDTHS = [800, 1280];
+const IMAGE_SIZES = "(min-width: 1152px) 540px, (min-width: 1024px) 45vw, 100vw";
+
+function srcSet(src: string, format: "avif" | "webp") {
+  return IMAGE_WIDTHS.map((w) => `${withBasePath(`${src}-${w}.${format}`)} ${w}w`).join(", ");
+}
+
+export function ProjectCard({ project, t }: { project: Project; t: Dictionary }) {
   const headingId = `project-${project.id}`;
 
   const story = [
@@ -20,24 +22,23 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
   ];
 
   return (
-    <motion.article
+    <article
       aria-labelledby={headingId}
-      initial={reduce ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.2) }}
       className="grid overflow-hidden border border-border bg-bg-elevated lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]"
     >
-      <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-bg-muted lg:self-start lg:border-r">
-        <Image
-          src={project.image.src}
+      <picture className="block border-b border-border bg-bg-muted lg:self-start lg:border-r">
+        <source type="image/avif" srcSet={srcSet(project.image.src, "avif")} sizes={IMAGE_SIZES} />
+        <source type="image/webp" srcSet={srcSet(project.image.src, "webp")} sizes={IMAGE_SIZES} />
+        <img
+          src={withBasePath(`${project.image.src}-800.webp`)}
           alt={project.image.alt}
-          fill
-          priority={index === 0}
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 100vw, 45vw"
+          width={project.image.width}
+          height={project.image.height}
+          loading="lazy"
+          decoding="async"
+          className="block h-auto w-full"
         />
-      </div>
+      </picture>
 
       <div className="flex flex-col p-6 sm:p-8">
         <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-subtle">
@@ -58,7 +59,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         <dl className="mt-5 space-y-3 text-sm leading-relaxed">
           {story.map((item) => (
             <div key={item.label} className="grid gap-1 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
-              <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent sm:pt-0.5">
+              <dt className="font-mono text-[11px] uppercase tracking-[0.14em] text-accent-ink sm:pt-0.5">
                 {item.label}
               </dt>
               <dd className="text-fg-muted">{item.text}</dd>
@@ -81,7 +82,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             <ul className="mt-2 space-y-1.5 text-sm text-fg-muted">
               {project.decisions.map((decision) => (
                 <li key={decision} className="flex gap-2">
-                  <span className="text-accent" aria-hidden>
+                  <span className="text-accent-ink" aria-hidden>
                     —
                   </span>
                   <span>{decision}</span>
@@ -105,7 +106,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent"
+              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent-ink"
             >
               <ExternalLink className="h-4 w-4" aria-hidden />
               {t.projects.visitSite}
@@ -117,7 +118,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent"
+              className="inline-flex min-h-6 items-center gap-2 text-sm font-medium text-fg hover:text-accent-ink"
             >
               <GitHubIcon className="h-4 w-4" />
               {t.projects.repository}
@@ -126,6 +127,6 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           ) : null}
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

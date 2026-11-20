@@ -1,21 +1,14 @@
-"use client";
-
 import { ArrowDownRight, Download, MapPin } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { cvDocument, hero, person, socialLinks } from "@/data/cv";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Hero() {
-  const reduce = useReducedMotion();
-  const { t } = useLocale();
-  const fadeUp = (delay: number) => ({
-    initial: reduce ? false : { opacity: 0, y: 12 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay },
-  });
+export function Hero({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
+  const facts = [hero.workAuthorization, hero.openTo];
 
   return (
     <section
@@ -25,45 +18,44 @@ export function Hero() {
     >
       <div className="pointer-events-none absolute inset-0 hero-grid" aria-hidden />
       <div
-        className="pointer-events-none absolute -right-24 top-10 h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-3xl"
+        className="pointer-events-none absolute -right-48 -top-14 h-[44rem] w-[44rem] bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--accent)_12%,transparent),transparent)]"
         aria-hidden
       />
 
       <Container className="relative py-20 sm:py-28 lg:py-32">
         <div className="max-w-3xl">
-          <motion.h1
+          <h1
             id="hero-heading"
             className="font-[family-name:var(--font-display)] text-5xl font-semibold tracking-tight text-fg sm:text-6xl lg:text-7xl"
-            {...fadeUp(0)}
           >
             {person.name}
-          </motion.h1>
+          </h1>
 
-          <motion.p className="mt-4 text-xl text-fg sm:text-2xl" {...fadeUp(0.06)}>
+          <p className="mt-4 text-xl text-fg sm:text-2xl">
             {person.jobTitle}
             <span className="text-fg-muted"> – {hero.stack}</span>
-          </motion.p>
+          </p>
 
-          <motion.p
-            className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg"
-            {...fadeUp(0.12)}
-          >
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-fg-muted sm:text-lg">
             {hero.valueProposition}
-          </motion.p>
+          </p>
 
-          <motion.ul
-            className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-xs text-fg-muted sm:text-sm"
-            {...fadeUp(0.16)}
-          >
+          <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-fg-muted sm:text-sm">
             <li className="inline-flex items-center gap-1.5 text-fg">
-              <MapPin className="h-4 w-4 text-accent" aria-hidden />
+              <MapPin className="h-4 w-4 text-accent-ink" aria-hidden />
               {t.hero.basedIn} {person.location.region}, {person.location.country}
             </li>
-            <li>{hero.workAuthorization}</li>
-            <li>{hero.openTo}</li>
-          </motion.ul>
+            {facts.map((fact) => (
+              <li key={fact} className="inline-flex w-full items-center gap-3 sm:w-auto">
+                <span className="hidden text-border-strong sm:inline" aria-hidden>
+                  /
+                </span>
+                {fact}
+              </li>
+            ))}
+          </ul>
 
-          <motion.div className="mt-9 flex flex-wrap items-center gap-3" {...fadeUp(0.2)}>
+          <div className="mt-9 flex flex-wrap items-center gap-3">
             {cvDocument.available ? (
               <Button href={cvDocument.path} variant="primary" download>
                 <Download className="h-4 w-4" aria-hidden />
@@ -77,9 +69,9 @@ export function Hero() {
             <Button href="#contact" variant="secondary">
               {t.hero.contact}
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.ul className="mt-6 flex flex-wrap gap-5 text-sm" {...fadeUp(0.24)}>
+          <ul className="mt-6 flex flex-wrap gap-5 text-sm">
             {socialLinks.map((link) => (
               <li key={link.id}>
                 <a
@@ -97,7 +89,7 @@ export function Hero() {
                 </a>
               </li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
       </Container>
     </section>

@@ -1,15 +1,14 @@
-"use client";
-
 import { person, socialLinks } from "@/data/cv";
 import { Container } from "@/components/ui/Container";
 import { ThemeToggle } from "@/components/navigation/ThemeToggle";
 import { MobileNav } from "@/components/navigation/MobileNav";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/SocialIcons";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 import { getNavigation } from "@/lib/navigation";
 
-export function Header() {
-  const { t } = useLocale();
+export function Header({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
   const navigation = getNavigation(t);
 
   return (
@@ -17,7 +16,7 @@ export function Header() {
       <Container className="flex h-[var(--nav-height)] items-center justify-between gap-4">
         <a
           href="#top"
-          className="group flex items-baseline gap-2 font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-fg"
+          className="inline-flex min-h-11 items-center font-[family-name:var(--font-display)] text-lg font-semibold tracking-tight text-fg"
         >
           {person.name}
         </a>
@@ -27,7 +26,7 @@ export function Header() {
             <a
               key={item.href}
               href={item.href}
-              className="rounded-sm px-3 py-2 text-sm text-fg-muted transition-colors hover:text-fg"
+              className="inline-flex min-h-11 items-center rounded-sm px-3 text-sm text-fg-muted transition-colors hover:text-fg"
             >
               {item.label}
             </a>
@@ -51,8 +50,11 @@ export function Header() {
               )}
             </a>
           ))}
-          <ThemeToggle />
-          <MobileNav items={navigation} />
+          <ThemeToggle labels={t.theme} />
+          <MobileNav
+            items={navigation}
+            labels={{ mobile: t.nav.mobile, open: t.nav.openMenu, close: t.nav.closeMenu }}
+          />
         </div>
       </Container>
     </header>

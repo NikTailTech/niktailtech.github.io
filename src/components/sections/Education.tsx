@@ -1,12 +1,11 @@
-"use client";
-
 import { education, person } from "@/data/cv";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Education() {
-  const { t } = useLocale();
+export function Education({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
 
   return (
     <Section id="education" labelledBy="education-heading">

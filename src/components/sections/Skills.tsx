@@ -1,13 +1,12 @@
-"use client";
-
 import { alsoOnCv, beyondTheStack, skillTiers } from "@/data/cv";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Skills() {
-  const { t } = useLocale();
+export function Skills({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
 
   return (
     <Section id="skills" labelledBy="skills-heading">

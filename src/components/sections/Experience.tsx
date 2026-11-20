@@ -1,13 +1,12 @@
-"use client";
-
 import { experience } from "@/data/cv";
 import { ExperienceCard } from "@/components/experience/ExperienceCard";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Experience() {
-  const { t } = useLocale();
+export function Experience({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
 
   return (
     <Section id="experience" labelledBy="experience-heading">
@@ -20,7 +19,7 @@ export function Experience() {
       />
       <div>
         {experience.map((item) => (
-          <ExperienceCard key={item.id} item={item} />
+          <ExperienceCard key={item.id} item={item} locale={locale} t={t} />
         ))}
       </div>
     </Section>

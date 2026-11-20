@@ -1,17 +1,16 @@
-"use client";
-
 import { glance } from "@/data/cv";
 import { Section } from "@/components/ui/Container";
-import { useLocale } from "@/i18n/LocaleProvider";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/types";
 
-export function Glance() {
-  const { t } = useLocale();
+export function Glance({ locale }: { locale: Locale }) {
+  const t = getDictionary(locale);
 
   return (
     <Section id="glance" labelledBy="glance-heading">
       <h2
         id="glance-heading"
-        className="font-mono text-xs uppercase tracking-[0.22em] text-accent"
+        className="font-mono text-xs uppercase tracking-[0.22em] text-accent-ink"
       >
         {t.glance.title}
       </h2>

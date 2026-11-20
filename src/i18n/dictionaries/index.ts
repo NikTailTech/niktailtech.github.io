@@ -5,3 +5,7 @@ import { it } from "./it";
 export const dictionaries: Record<Locale, Dictionary> = { en, it };
 
 export const defaultLocale: Locale = "en";
+
+export function getDictionary(locale: Locale): Dictionary {
+  return dictionaries[locale];
+}

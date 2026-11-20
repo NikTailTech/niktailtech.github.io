@@ -1,12 +1,7 @@
-"use client";
-
-import { useLocale } from "@/i18n/LocaleProvider";
-
-export function SkipLink() {
-  const { t } = useLocale();
+export function SkipLink({ label }: { label: string }) {
   return (
     <a href="#main" className="skip-link">
-      {t.meta.skipToContent}
+      {label}
     </a>
   );
 }
