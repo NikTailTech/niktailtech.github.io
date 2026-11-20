@@ -1,6 +1,6 @@
 "use client";
 
-import { skillTiers } from "@/data/cv";
+import { alsoOnCv, beyondTheStack, skillTiers } from "@/data/cv";
 import { Badge } from "@/components/ui/Badge";
 import { Section } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -34,6 +34,27 @@ export function Skills() {
             </ul>
           </article>
         ))}
+      </div>
+
+      <p className="mt-6 text-sm leading-relaxed text-fg-muted">
+        <span className="font-mono text-xs uppercase tracking-[0.14em] text-fg-subtle">
+          {t.skills.alsoOnCv}:
+        </span>{" "}
+        {alsoOnCv.join(", ")}
+      </p>
+
+      <div className="mt-10 border-t border-border pt-6">
+        <h3 className="font-mono text-xs uppercase tracking-[0.18em] text-fg-subtle">
+          {t.skills.beyondTheStack}
+        </h3>
+        <dl className="mt-4 grid gap-4 sm:grid-cols-3">
+          {beyondTheStack.map((item) => (
+            <div key={item.title}>
+              <dt className="text-sm font-medium text-fg">{item.title}</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-fg-muted">{item.description}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </Section>
   );

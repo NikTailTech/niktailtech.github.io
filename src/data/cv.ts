@@ -47,73 +47,98 @@ export const cvDocument: CvDocument = {
   available: false,
 };
 
-export const shortBio =
-  "I'm a Full Stack Developer. I like building software end to end — the interface, the services behind it, and the infrastructure that keeps it running.";
+export const hero = {
+  stack: "TypeScript, Next.js and PHP",
+  valueProposition:
+    "I design and ship web applications end to end, from Figma to production, with the infrastructure to keep them reliable.",
+  workAuthorization: "No visa sponsorship required",
+  openTo: "Open to Full Stack roles in Ticino or remote (EU)",
+};
 
-export const about: string[] = [
-  "I'm a Full Stack Developer. I like building software end to end — the interface people use, the services behind it, and the infrastructure that keeps it running.",
-  "I don't stop at writing features. Architecture, data models, and how things hold up in production matter to me. Day to day that means TypeScript, React, Next.js, PHP, SQL, Docker, and Linux — making sure an app works outside a laptop, not just in local.",
-  "Outside product work I also do 3D modeling, digital fabrication, printing, and visual design when I want something more hands-on.",
-  "What keeps me going is pretty simple: figure out how something works, find a cleaner way to build it, and turn a messy idea into something real.",
-];
+export const glance: { areas: FocusArea[]; also: string } = {
+  areas: [
+    {
+      title: "Full Stack web",
+      description: "Next.js, React and TypeScript front ends; Node.js and PHP (5 to 8+) back ends.",
+    },
+    {
+      title: "Databases and APIs",
+      description: "PostgreSQL, SQL and Prisma; REST and SOAP integrations.",
+    },
+    {
+      title: "DevOps and self-hosting",
+      description: "Docker, Kubernetes and Linux; CI/CD with GitHub Actions; a Proxmox homelab.",
+    },
+  ],
+  also: "Also: Web3, 3D modeling, graphic design",
+};
 
-export const focusAreas: FocusArea[] = [
-  {
-    title: "Full Stack Development",
-    description:
-      "Interfaces, APIs, and application logic with React, Next.js, TypeScript, Node.js, and PHP.",
-  },
-  {
-    title: "Databases & APIs",
-    description:
-      "Relational data modeling, SQL, PostgreSQL, Prisma, and REST services that stay maintainable.",
-  },
-  {
-    title: "Shipping & Environments",
-    description:
-      "Docker, Linux, and Git day to day; personal homelab Kubernetes for self-hosted apps.",
-  },
-  {
-    title: "Side Practice",
-    description: "Design in Figma and hands-on 3D / fabrication when I want a break from product work.",
-  },
-];
+export const about = {
+  title: "From Figma to Production",
+  subtitle: "I take a feature from the first layout to the server it runs on.",
+  paragraphs: [
+    "I'm a Full Stack Developer based in Ticino. I like owning a feature end to end: the layout in Figma, the React or Next.js interface, the API and database behind it, and the deploy that puts it in front of users.",
+    "At Franklin Switzerland I took the company's new website from Figma to production, and I maintain its existing PHP site: automations, patches and security fixes. Before that I spent over two years at SL Technology building and maintaining PHP web applications, working directly with clients on their requirements.",
+    "I care about how software behaves once it's live, so I run my own projects in Docker on a Proxmox and Kubernetes homelab. That's where I learn the infrastructure side without risking production.",
+    "Outside work I've created an NFT collection with its smart contract, and I do 3D modeling and graphic design.",
+  ],
+};
 
 export const skillTiers: SkillTier[] = [
   {
     id: "daily",
-    title: "Daily use",
-    description: "What I use regularly to ship interfaces, APIs, data, and deploys.",
+    title: "Daily drivers",
+    description: "What I build and ship with.",
     skills: [
       "TypeScript",
       "JavaScript",
+      "PHP",
       "React",
       "Next.js",
-      "HTML",
-      "CSS",
-      "Tailwind CSS",
-      "jQuery",
       "Node.js",
-      "PHP",
-      "REST APIs",
-      "PostgreSQL",
-      "SQL",
+      "PostgreSQL / SQL",
       "Prisma",
       "Docker",
-      "Linux",
-      "Kubernetes",
-      "CI/CD",
-      "Git",
-      "GitHub",
-      "Figma",
+      "Git / GitHub",
+      "GitHub Actions",
+      "Tailwind CSS",
     ],
   },
   {
-    id: "also",
-    title: "Also use",
-    description: "Technologies I know and can work with when the project needs them.",
-    skills: ["Bootstrap", "Java", "Blender", "Adobe Photoshop", "Adobe Illustrator"],
+    id: "working",
+    title: "Working knowledge and side projects",
+    description: "Used at work or in my own projects, not every day.",
+    skills: [
+      "Vue.js",
+      "Kubernetes / k3s",
+      "Proxmox",
+      "Python",
+      "Grafana",
+      "Solidity",
+      "Blender",
+      "Fusion 360",
+      "Adobe CC",
+      "Figma",
+      "Java (training)",
+    ],
   },
+];
+
+/** Also on the CV; listed so the site and the CV name the same tools. */
+export const alsoOnCv = [
+  "Bootstrap",
+  "jQuery",
+  "T-SQL",
+  "NoSQL",
+  "REST and SOAP APIs",
+  "Postman",
+  "Cursor (AI-assisted development)",
+];
+
+export const beyondTheStack: FocusArea[] = [
+  { title: "Web3", description: "Created an NFT collection and its smart contract in Solidity." },
+  { title: "3D", description: "Modeling in Blender and Fusion 360." },
+  { title: "Design", description: "Graphic design in Adobe CC and Figma." },
 ];
 
 export const experience: ExperienceItem[] = [
@@ -124,13 +149,15 @@ export const experience: ExperienceItem[] = [
     start: "2025-06",
     end: null,
     location: "Sorengo, Switzerland",
+    context: "International team, working primarily in English.",
+    // TODO(user): add confirmed results (e.g. performance, leads, tool adoption, security fixes).
     bullets: [
-      "Web Development: Designed and built modern web interfaces for the company site, with attention to usability, responsive layouts, and brand consistency.",
-      "Internal Applications: Built custom internal web tools, including branded email generation and personalized QR codes.",
-      "CMS & CRM Integration: Customized CMS and CRM modules, configured YAML-based setups, and styled embedded forms.",
-      "Website Maintenance & Automation: Wrote PHP automations for existing sites, fixed issues, applied patches, and addressed security findings.",
+      "Took ownership of the company's new website end to end, from Figma layouts to production in React, Next.js, TypeScript and Tailwind CSS, with a focus on SEO, user profiling and lead generation.",
+      "Built internal web applications, including tools that generate customized emails and QR codes.",
+      "Integrated CMS and CRM platforms and embedded forms, customizing their behavior through YAML modules and custom CSS.",
+      "Maintained the existing PHP website: implemented automations, applied patches, fixed security vulnerabilities and resolved technical issues.",
     ],
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Figma", "PHP"],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "PHP", "Figma", "YAML"],
   },
   {
     id: "sl-technology",
@@ -139,11 +166,12 @@ export const experience: ExperienceItem[] = [
     start: "2023-02",
     end: "2025-05",
     location: "Crema, Italy",
+    // TODO(user): add confirmed results (e.g. number of applications or clients maintained, performance gains).
     bullets: [
-      "Application Development: Developed and maintained web applications and websites, adapting functionalities to different business requirements and operational workflows.",
-      "Backend Development: Implemented and customized PHP-based application functionalities to support business processes and specific client requirements.",
-      "Database Design & Management: Analyzed, designed and managed relational databases, ensuring proper data organization and efficient data handling.",
-      "Client Collaboration: Worked directly with clients to gather and analyze requirements, identify suitable technical solutions and troubleshoot business and IT-related issues.",
+      "Developed and maintained web applications and websites for business process management, tailored to the needs of different organizations, in PHP, JavaScript, HTML, CSS and Bootstrap 4/5.",
+      "Analyzed, designed and managed relational databases to keep data well organized and queries efficient.",
+      "Worked directly with clients to gather requirements, propose technical solutions and troubleshoot business and IT issues, improving system performance and operational efficiency.",
+      "Extended applications by implementing and customizing plugins and third-party libraries.",
     ],
     technologies: ["PHP", "JavaScript", "HTML", "CSS", "Bootstrap", "SQL"],
   },
@@ -155,12 +183,11 @@ export const experience: ExperienceItem[] = [
     end: "2023-02",
     location: "Lodi, Italy",
     bullets: [
-      "Technical Training: Completed an initial two-month training program covering Java, JavaScript, SQL, T-SQL, Linux and concurrent programming.",
-      "Database Development: Designed and developed databases, focusing on data organization, structure and management.",
-      "UI Development: Designed and implemented user interfaces, with particular attention to usability, clarity and an intuitive user experience.",
-      "Team Collaboration: Collaborated with the development team within an environment operating under ISO/IEC 27001 information security standards.",
+      "Joined a Research and Development team after a two-month training in Java, JavaScript, SQL, T-SQL, Linux and concurrent programming.",
+      "Designed and built databases and user interfaces focused on a simple, intuitive user experience.",
+      "Collaborated with the team in an environment compliant with the ISO/IEC 27001 information security standard.",
     ],
-    technologies: ["Java", "JavaScript", "SQL", "T-SQL", "Linux"],
+    technologies: ["JavaScript", "SQL", "T-SQL", "Linux", "Java (training)"],
   },
 ];
 
@@ -236,8 +263,8 @@ export const projects: Project[] = [
 ];
 
 export const contact = {
-  heading: "Let’s Talk",
-  body: "Open to chats about software, infrastructure, side projects, or anything interesting you're building. Drop me a line.",
+  heading: "Let’s talk",
+  body: "Hiring for a Full Stack or PHP role in Ticino or remote? Email is the fastest way to reach me; LinkedIn works too.",
   mailtoSubject: "Professional inquiry — portfolio",
   mailtoBody: `Hi Nicholas,
 

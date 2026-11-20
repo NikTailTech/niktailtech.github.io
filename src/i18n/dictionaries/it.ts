@@ -5,7 +5,7 @@ export const it: Dictionary = {
     skipToContent: "Vai al contenuto",
   },
   nav: {
-    glance: "TL;DR",
+    glance: "In breve",
     about: "Chi sono",
     experience: "Esperienza",
     skills: "Competenze",
@@ -24,22 +24,21 @@ export const it: Dictionary = {
     switch: "Cambia tema",
   },
   hero: {
-    viewProjects: "Guarda i progetti",
-    contact: "Contattami",
+    downloadCv: "Scarica il CV",
+    viewProjects: "Vedi i progetti",
+    contact: "Contatti",
+    basedIn: "Base in",
   },
   glance: {
-    eyebrow: "TL;DR",
-    lead: "Troppo lungo? Ecco il riassunto.",
+    title: "In breve",
   },
   about: {
     eyebrow: "Chi sono",
-    title: "End to End, Design to Deploy",
-    intro: "Come lavoro e perché costruisco così.",
   },
   experience: {
     eyebrow: "Esperienza",
     title: "Percorso professionale",
-    description: "I ruoli che ho ricoperto, cosa ho fatto e con quali tecnologie.",
+    description: "Ruoli full stack in Svizzera e in Italia dal 2022.",
     present: "Oggi",
     technologies: "Tecnologie",
   },
@@ -51,8 +50,10 @@ export const it: Dictionary = {
   },
   skills: {
     eyebrow: "Competenze",
-    title: "Competenze tecniche",
-    description: "Divise per quanto le uso: strumenti quotidiani, poi altri che conosco.",
+    title: "Con cosa lavoro",
+    description: "Ogni competenza qui è nel mio CV o in un progetto collegato.",
+    alsoOnCv: "Anche nel mio CV",
+    beyondTheStack: "Oltre lo stack",
   },
   projects: {
     eyebrow: "Lavori",

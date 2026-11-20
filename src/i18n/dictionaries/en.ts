@@ -5,7 +5,7 @@ export const en: Dictionary = {
     skipToContent: "Skip to content",
   },
   nav: {
-    glance: "TL;DR",
+    glance: "At a glance",
     about: "About",
     experience: "Experience",
     skills: "Skills",
@@ -24,22 +24,21 @@ export const en: Dictionary = {
     switch: "Switch theme",
   },
   hero: {
-    viewProjects: "Explore Projects",
-    contact: "Get in Touch",
+    downloadCv: "Download CV",
+    viewProjects: "View projects",
+    contact: "Contact",
+    basedIn: "Based in",
   },
   glance: {
-    eyebrow: "TL;DR",
-    lead: "Too long? Here’s the cheat sheet.",
+    title: "At a glance",
   },
   about: {
     eyebrow: "About",
-    title: "End to End, Design to Deploy",
-    intro: "A short look at how I work, what I dig into, and why I build the way I do.",
   },
   experience: {
     eyebrow: "Experience",
     title: "Professional Timeline",
-    description: "Roles, responsibilities, and stack from my professional path.",
+    description: "Full stack roles in Switzerland and Italy since 2022.",
     present: "Present",
     technologies: "Technologies",
   },
@@ -51,9 +50,10 @@ export const en: Dictionary = {
   },
   skills: {
     eyebrow: "Skills",
-    title: "Technical Skills",
-    description:
-      "Split by how often I use them: day-to-day tools, then others I know and can work with.",
+    title: "What I work with",
+    description: "Every skill here is on my CV or in a linked project.",
+    alsoOnCv: "Also on my CV",
+    beyondTheStack: "Beyond the stack",
   },
   projects: {
     eyebrow: "Work",

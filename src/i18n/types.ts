@@ -25,17 +25,16 @@ export type Dictionary = {
     switch: string;
   };
   hero: {
+    downloadCv: string;
     viewProjects: string;
     contact: string;
+    basedIn: string;
   };
   glance: {
-    eyebrow: string;
-    lead: string;
+    title: string;
   };
   about: {
     eyebrow: string;
-    title: string;
-    intro: string;
   };
   experience: {
     eyebrow: string;
@@ -54,6 +53,8 @@ export type Dictionary = {
     eyebrow: string;
     title: string;
     description: string;
+    alsoOnCv: string;
+    beyondTheStack: string;
   };
   projects: {
     eyebrow: string;

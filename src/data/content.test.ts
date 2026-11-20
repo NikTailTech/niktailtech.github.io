@@ -75,6 +75,26 @@ describe("CV consistency", () => {
   });
 });
 
+describe("positioning copy", () => {
+  it("keeps At a glance to four lines", () => {
+    expect(cv.glance.areas.length + 1).toBeLessThanOrEqual(4);
+  });
+
+  it("keeps About between 120 and 150 words", () => {
+    const words = cv.about.paragraphs.join(" ").split(/\s+/).filter(Boolean).length;
+    expect(words).toBeGreaterThanOrEqual(120);
+    expect(words).toBeLessThanOrEqual(150);
+  });
+
+  it("lists every skill once, with Java only as training and no C/C++", () => {
+    const all = [...cv.skillTiers.flatMap((tier) => tier.skills), ...cv.alsoOnCv];
+    const normalized = all.map((s) => s.toLowerCase().replace(/\s+/g, ""));
+    expect(new Set(normalized).size).toBe(normalized.length);
+    expect(all.filter((s) => /\bjava\b/i.test(s))).toEqual(["Java (training)"]);
+    expect(all.some((s) => /^c(\+\+)?$/i.test(s))).toBe(false);
+  });
+});
+
 describe("published copy", () => {
   it("contains no placeholder or unfinished copy", () => {
     for (const text of publishedCopy) {

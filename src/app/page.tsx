@@ -5,13 +5,13 @@ import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
-import { Tldr } from "@/components/sections/Tldr";
+import { Glance } from "@/components/sections/Glance";
 
 export default function HomePage() {
   return (
     <main id="main">
       <Hero />
-      <Tldr />
+      <Glance />
       <About />
       <Experience />
       <Education />

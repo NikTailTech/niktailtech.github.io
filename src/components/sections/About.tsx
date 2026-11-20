@@ -14,19 +14,12 @@ export function About() {
         <SectionHeading
           id="about-heading"
           eyebrow={t.about.eyebrow}
-          title={t.about.title}
-          description={t.about.intro}
+          title={about.title}
+          description={about.subtitle}
         />
         <div className="prose-portfolio text-base leading-relaxed text-fg-muted sm:text-lg">
-          {about.map((paragraph, index) => (
-            <p
-              key={paragraph.slice(0, 32)}
-              className={
-                index === about.length - 1 ? "border-l-2 border-accent pl-4 text-fg" : undefined
-              }
-            >
-              {paragraph}
-            </p>
+          {about.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
         </div>
       </div>
