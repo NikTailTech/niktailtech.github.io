@@ -67,10 +67,10 @@ This repo is the **user site** for `NikTailTech` → live at [https://niktailtec
 
 1. **Settings → Pages → Build and deployment → Source**: **GitHub Actions** (not “Deploy from a branch”).  
    If Source is a branch, GitHub serves Jekyll and shows this README instead of the Next.js site.
-2. Ensure the default branch is `main` (or `master` — the workflow listens to both).
+2. Ensure the default branch is `main`. `.github/workflows/deploy.yml` must stay the only workflow that deploys Pages; a second one races it and can leave a stale build live.
 3. Leave `BASE_PATH` / `NEXT_PUBLIC_BASE_PATH` **empty** (user sites are served from `/`).
 4. Confirm `seo.siteUrl` in `src/data/profile.ts` is `https://niktailtech.github.io`.
-5. Push to `main`/`master` or run the **Deploy to GitHub Pages** workflow manually.
+5. Push to `main` or run the **Deploy to GitHub Pages** workflow manually. Pull requests run lint, typecheck, tests and build without deploying.
 
 ### Workflow
 
